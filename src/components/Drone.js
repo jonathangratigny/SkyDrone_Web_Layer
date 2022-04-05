@@ -7,7 +7,6 @@ import { baseUrl } from '../utils/fetchApi'
 const Drone = () => {
     const { id } = useParams()
     const [drone, setDrone] = useState(null)
-
     useEffect(() => {
         const fetchData = async () => {
             const data = await fetch(`${baseUrl}/drones/${id}`);
@@ -16,12 +15,15 @@ const Drone = () => {
         }
         fetchData()
     }, [id])
-
     return drone ? (
-        <div>
-            <DroneCard drone={drone} />
-            <Footer />
+        <>
+        <div className='container '>
+            <div className="cards__container m-auto">
+                <DroneCard drone={drone}/>
+            </div>
         </div>
+            <Footer />
+        </>
     ) : null
 }
 

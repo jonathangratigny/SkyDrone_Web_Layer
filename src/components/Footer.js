@@ -7,18 +7,18 @@ function Footer() {
     <div className='footer-container'>
     	<div className='footer-links'>
 			<div className='footer-link-items'>
-				<h2>Nous joindre</h2>
-				<h3>SKY DRONE</h3>
-				<h3>10 Place Léon Meyer</h3>
-				<h3>76600 Le Havre</h3>
-				<h3>02 35 10 20 30</h3>
-				</div>
+				<h3>Nous joindre</h3>
+				<p>SKY DRONE</p>
+				<p>10 Place Léon Meyer</p>
+				<p>76600 Le Havre</p>
+				<p>02 35 10 20 30</p>
+			</div>
 			<div className='footer-link-items'>
-				<h2>FAQ</h2>
-				<h3>Contact</h3>
-				<h3>Notre équipe</h3>
-				<h3>Mentions légales</h3>
-				<h3>Réglementation</h3>
+				<h3>Informations</h3>
+				<p>Contact</p>
+				<p>Notre équipe</p>
+				<p>Mentions légales</p>
+				<p>Réglementation</p>
 			</div>
       	</div>
       	<section className='social-media'>

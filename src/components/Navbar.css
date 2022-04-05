@@ -1,26 +1,29 @@
-.navbar {
+.myNavbar {
     background: linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(26, 23, 23, 0.8) 100%);
     height: 80px;
-    width: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    /* justify-content: center;
+    align-items: center; */
     font-size: 1.2rem;
-    position: fixed;
+    /* position: fixed; */
     top: 0;
     z-index: 999;
+    flex: 1;
   }
   
   .navbar-container {
     display: flex;
-    justify-content: center;
+    width: 100%;
+    /* justify-content: center;
     align-items: center;
     height: 80px;
-    max-width: 1500px;
+    max-width: 1500px; */
+    justify-content: space-between;
   }
   
   .navbar-logo {
     color: #fff;
+    padding: 0 1rem;
     justify-self: start;
     letter-spacing: 2px;
     cursor: pointer;
@@ -37,13 +40,14 @@
   
   .nav-menu {
     display: flex;
+    align-items: center;
     flex-direction: row;
     grid-gap: 10px;
-    list-style: none;
     text-align: center;
-    width: 60vw;
-    justify-content: end;
+    /* width: 60vw; */
+    margin-left: auto;
     margin-right: 2rem;
+    margin-bottom: 0;
   }
   
   .nav-links {

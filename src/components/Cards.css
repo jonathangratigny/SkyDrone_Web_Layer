@@ -15,11 +15,12 @@
     /* display: flex; */
     /* flex-flow: column; */
     /* align-items: center; */
-    max-width: 40%;
+    /* max-width: 40%; */
     /* width: 100%; */
-    margin: 0 auto;
+    /* margin: 0 auto; */
     padding: 3rem;
     /* height: auto; */
+    width: clamp(300px, 33%, 100%);
   }
   
   .cards__wrapper {
@@ -30,13 +31,16 @@
   
   .cards__items {
     margin-bottom: 24px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
   }
   
   .cards__item {
     display: flex;
-    flex: 1;
     margin: 0 1rem;
     border-radius: 10px;
+    
   }
   
   .cards__item__link {
@@ -125,11 +129,7 @@
     }
   }
   
-  @media only screen and (min-width: 1024px) {
-    .cards__items {
-      display: flex;
-    }
-  }
+
   
   @media only screen and (max-width: 1024px) {
     .cards__item {

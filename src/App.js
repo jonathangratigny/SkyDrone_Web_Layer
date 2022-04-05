@@ -8,6 +8,8 @@ import Services from './components/pages/Services';
 import SignUp from './components/pages/SignUp';
 import SignIn from './components/pages/SignIn';
 import UserDashboard from './components/UserDashboard';
+import Cart from './components/pages/Cart';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => {
   return (
@@ -21,7 +23,9 @@ const App = () => {
           <Route path='/sign-up' exact element={<SignUp />}></Route>
           <Route path='/sign-in' exact element={<SignIn />}></Route>
           <Route path='/dashboard' exact element={<UserDashboard />}></Route>
+          <Route path='/cart' exact element={<Cart />}></Route>
         </Routes>
+
       </Router>
     </>
   );

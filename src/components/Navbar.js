@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import './Navbar.css'
 import './Button.css'
+import { BsCalendarWeek } from "react-icons/bs";
 
 function Navbar() {
   const [click, setClick] = useState(false)
@@ -36,7 +37,7 @@ function Navbar() {
 
   return (
     <>
-        <nav className='navbar'>
+        <nav className='myNavbar'>
             <div className='navbar-container'>
                 <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
                     <span className="colorCompany">SKY</span>'DR<span className="colorCompany">O</span>NE
@@ -60,23 +61,14 @@ function Navbar() {
                       Aperçu
                     </Link>
                   </li>
-                  <li className='nav-item'>
-                    <Link to='/sign-up' className='nav-links-mobile' onClick={closeMobileMenu}>
-                      INSCRIPTION
-                    </Link>
-                  </li>
-                  <li className='nav-item'>
-                    <Link to='/sign-in' className='nav-links-mobile' onClick={closeMobileMenu}>
-                      CONNEXION
-                    </Link>
-                  </li>
+                  
 
 					{
 						auth ? <li><Link className='nav-links' onClick={logOut} to='/'>LOGOUT</Link></li>
 						:
 						<>
 						<li><Link className='hiddenbtn' to='/sign-up'><button className='btnSignUp'>INSCRIPTION</button></Link></li>
-						<li><Link className='hiddenbtn' to='/sign-in'><button className='btn'>CONNEXION</button></Link></li>
+						<li><Link className='hiddenbtn' to='/sign-in'><button className='myBtn'>CONNEXION</button></Link></li>
 						</>
 					}
 
@@ -86,7 +78,11 @@ function Navbar() {
 						<>
 						</>
 					}
-				  
+				          <li className='nav-item'>
+                    <Link to='/cart' className='nav-links' onClick={closeMobileMenu}>
+                      <BsCalendarWeek />
+                    </Link>
+                  </li>
                 </ul>
             </div>
         </nav>
