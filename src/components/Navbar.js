@@ -3,8 +3,14 @@ import { Link, useNavigate } from 'react-router-dom'
 import './Navbar.css'
 import './Button.css'
 import { BsCalendarWeek } from "react-icons/bs";
+import { useCart } from "react-use-cart";
+
 
 function Navbar() {
+  const {
+    isEmpty,
+    totalItems
+  } = useCart();
   const [click, setClick] = useState(false)
   const [button, setButton] = useState(true)
 
@@ -53,7 +59,7 @@ function Navbar() {
                   </li>
                   <li className='nav-item'>
                     <Link to='/products' className='nav-links' onClick={closeMobileMenu}>
-                      Nos Drones
+                      Drones
                     </Link>
                   </li>
                   <li className='nav-item'>
@@ -78,9 +84,12 @@ function Navbar() {
 						<>
 						</>
 					}
+
+
 				          <li className='nav-item'>
-                    <Link to='/cart' className='nav-links' onClick={closeMobileMenu}>
+                    <Link to='/cart' className='nav-links position-relative' onClick={closeMobileMenu}>
                       <BsCalendarWeek />
+                      <span className={isEmpty ? 'd-none' : 'notEmpty'}>{totalItems}</span>
                     </Link>
                   </li>
                 </ul>

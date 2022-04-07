@@ -6,7 +6,6 @@
 
  .titleDrone{
   text-align: center;
-  margin-top: 8%;
   text-transform: uppercase;
   letter-spacing: 1px;
  }
@@ -101,7 +100,7 @@
   }
   
   .cards__item__info {
-    padding: 20px 30px 30px;
+    padding: 1rem 0;
   }
   
   .cards__item__text {
@@ -114,13 +113,12 @@
   .cards__item__desc{
     color: #252e48;
     font-size: 15px;
-    padding-top: 10px;
+    height: 70px;
   }
 
   .cards__item__price{
     color: #1f98f4;
     font-size: 15px;
-    padding-top: 10px;
   }
   
   @media only screen and (min-width: 1200px) {
@@ -154,4 +152,18 @@
     .titleDrone{
       margin-top: 25%;
     }
+}
+
+.cards__item__dispo {
+  color: rgb(64, 190, 64);
+}
+
+.cards__item__dispo::before {
+  content: "";
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: rgb(64, 190, 64);
+  margin-right: 5px;
 }

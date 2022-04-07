@@ -1,4 +1,5 @@
 import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from './components/Navbar';
 import './App.css';
 import Home from './components/pages/Home';
@@ -9,11 +10,12 @@ import SignUp from './components/pages/SignUp';
 import SignIn from './components/pages/SignIn';
 import UserDashboard from './components/UserDashboard';
 import Cart from './components/pages/Cart';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { ParallaxProvider } from 'react-scroll-parallax';
 
 const App = () => {
   return (
     <>
+      <ParallaxProvider>
       <Router>
         <Navbar />
         <Routes>
@@ -27,6 +29,7 @@ const App = () => {
         </Routes>
 
       </Router>
+      </ParallaxProvider>
     </>
   );
 }

@@ -164,3 +164,18 @@
 .colorCompany{
     color: #3caae9;
 }
+
+.notEmpty {
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(23px, -23px);
+  background-color: #229ee4;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
