@@ -4,7 +4,6 @@ import { baseUrl } from '../utils/fetchApi'
 import { useCart } from "react-use-cart";
 
 const DroneCard = ({ drone }) => {
-	const { addItem } = useCart();
 	let category = drone.category_info ?? (drone.category_id ? drone.category_id : 'Inconnu')
 
 	return (
@@ -21,7 +20,7 @@ const DroneCard = ({ drone }) => {
 						<span className="cards__item__dispo">Disponible</span>
 					</footer>
 				</div>
-					<button className="btnSignUp" onClick={() => addItem(drone)}>Réserver</button>
+					<button className="btnSignUp">Réserver</button>
 			</div>
      
  	);
