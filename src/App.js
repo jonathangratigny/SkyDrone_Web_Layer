@@ -8,6 +8,9 @@ import Services from './components/pages/Services';
 import SignUp from './components/pages/SignUp';
 import SignIn from './components/pages/SignIn';
 import UserDashboard from './components/UserDashboard';
+import ErrorSection from './components/Error404';
+import UsersDetails from './components/UsersDetails';
+import UpdateUsersDetails from './components/UpdateUsersDetails';
 
 const App = () => {
   return (
@@ -21,6 +24,9 @@ const App = () => {
           <Route path='/sign-up' exact element={<SignUp />}></Route>
           <Route path='/sign-in' exact element={<SignIn />}></Route>
           <Route path='/dashboard' exact element={<UserDashboard />}></Route>
+          <Route path='/mesinfos' exact element={<UsersDetails />}></Route>
+          <Route path='/updateuserdetails' exact element={<UpdateUsersDetails />}></Route>
+          <Route path='/*' exact element={<ErrorSection />}></Route>
         </Routes>
       </Router>
     </>

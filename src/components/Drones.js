@@ -20,11 +20,13 @@ const Drones = () => {
     return (
         <>
         <h1 className='titleDrone'>notre sélection de drones</h1>
+        <div className='testeur'>
         {drones.map(drone => (
             <Link key={drone._id} to={drone._id}>
                 <DroneCard drone={drone}></DroneCard>
             </Link>
         ))}
+        </div>
         <Footer />
         </>
     )

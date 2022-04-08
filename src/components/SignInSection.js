@@ -3,11 +3,12 @@ import '../App.css'
 import './SignUpSection.css'
 import Footer from "./Footer"
 import { baseUrl } from "../utils/fetchApi"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 
 const SignInSection = () => {
     const [email, setEmail] = React.useState('')
     const [password, setPassword] = React.useState('')
+    const { id } = useParams()
     const navigate = useNavigate()
     useEffect(() => {
         const auth = localStorage.getItem('user')
@@ -25,12 +26,15 @@ const SignInSection = () => {
                 'Content-Type':'application/json'
             }
         })
-        result = await result.json()
-        if(result){
-            localStorage.setItem("user",JSON.stringify(result))
+
+        const checkConnexion = await result.json()
+        // const inBase = fetch(`${baseUrl}/users/${id}`)
+        if(checkConnexion){
+            localStorage.setItem('user', JSON.stringify(checkConnexion))
             navigate('/dashboard')
         } else {
-            alert('EMAIL OU MOT DE PASSE INCORRECT')
+            alert("Identifiants incorrects")
+            console.log('echo');
         }
     }
     
@@ -41,7 +45,7 @@ const SignInSection = () => {
             <h1 className="titleSignUp">Connectez-vous à votre compte</h1>
                 <div className="inputLoginTest">
                     <input
-                        className="inputBoxLogin"
+                        className="inputBox"
                         name="email"
                         onChange={(e)=>setEmail(e.target.value)}
                         value={email}
@@ -49,7 +53,7 @@ const SignInSection = () => {
                         placeholder="EMAIL"
                     />
                     <input
-                        className="inputBoxLogin"
+                        className="inputBox"
                         name="password"
                         onChange={(e)=>setPassword(e.target.value)}
                         value={password}

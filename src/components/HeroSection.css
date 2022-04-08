@@ -10,6 +10,12 @@
     object-fit: contain;
 }
 
+.gif{
+    text-align: center;
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
 .hero-container > h1{
     color: #fff;
     font-size: 90px;

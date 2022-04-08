@@ -1,0 +1,10 @@
+.detailsUsers{
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    padding-bottom: 3%;
+}
+
+.submitSection > a{
+    text-decoration: none;
+}
