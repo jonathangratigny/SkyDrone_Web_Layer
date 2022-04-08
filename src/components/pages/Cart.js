@@ -15,7 +15,7 @@ function Cart() {
     } = useCart();
   
     if (isEmpty) return <h1 className='text-center pt-5'>Aucune réservation</h1>;
-  
+    console.log(items)
     return (
       <>
         <div className="container">
@@ -23,7 +23,8 @@ function Cart() {
             <div className="cart_container d-flex">
                 <div className="cart_items flex-grow-1 p-3">
                     <ul className='list-group'>
-                    {items.map((item) => (
+                    {items.map((item) =>  (
+                        
                         <li key={item.id} className="list-group-item d-flex align-items-center">
                         {item.name_d} / {item.quantity} jours
                         <button className='btn btn-outline-primary  mx-1 ms-auto btn-sm'
