@@ -11,24 +11,31 @@ const SignUpSection = () => {
     const [firstName_u, setFirstName] = useState('')
     const [company_u, setCompany] = useState('')
     const [phone_u, setPhone] = useState('')
+    const [address_u, setAdress] = useState('')
+    const [siret_u, setSiret] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [key_r, setKey_r] = useState('0')
     const navigate = useNavigate()
     
     const collectData = async () => {
-        console.warn(lastName_u, firstName_u, company_u, phone_u, email, password)
-        let result = await fetch(`${baseUrl}/users`, {
+        console.log(lastName_u, firstName_u, company_u, phone_u, address_u, siret_u, email, password, key_r)
+        let result = await fetch(`${baseUrl}/signup`, {
             method:'post',
-            body: JSON.stringify({lastName_u, firstName_u, company_u, phone_u, email, password}),
+            body: JSON.stringify({lastName_u, firstName_u, company_u, phone_u, address_u, siret_u, email, password, key_r}),
             headers:{
                 'Content-Type':'application/json'
             }
         })
         result = await result.json()
-        console.warn(result)
-        localStorage.setItem('user', JSON.stringify(result))
-        alert('Votre compte a été crée avec succès !')
-        navigate('/sign-in')
+        if(result){
+            localStorage.setItem('user', JSON.stringify(result))
+            alert('Votre compte a été crée avec succès !')
+            navigate('/dashboard')
+        } else {
+            alert("NOPE")
+            navigate('/')
+        }
     }
 
     return (
@@ -44,7 +51,6 @@ const SignUpSection = () => {
                         value={lastName_u}
                         onChange={(e)=>setLastName(e.target.value)}
                         placeholder="NOM"
-                        required
                     />
                     <input
                         className="inputBox"
@@ -53,7 +59,6 @@ const SignUpSection = () => {
                         value={firstName_u}
                         onChange={(e)=>setFirstName(e.target.value)}
                         placeholder="PRÉNOM"
-                        required
                     />
                 </div>
                 <div className="inputLogin">
@@ -64,19 +69,23 @@ const SignUpSection = () => {
                         value={company_u}
                         onChange={(e)=>setCompany(e.target.value)}
                         placeholder="NOM ENTREPRISE"
-                        required
                     />
                     <input
                         className="inputBox"
-                        type='hidden'
+                        name="siret_u"
+                        type='text'
+                        value={siret_u}
+                        onChange={(e)=>setSiret(e.target.value)}
                         placeholder="SIRET"
                     />
                 </div>
                 <div className="inputLogin">
                     <input
                     className="inputBox"
-                        type='hidden'
-                        name="companyAdress"
+                        type='text'
+                        value={address_u}
+                        name="address_u"
+                        onChange={(e)=>setAdress(e.target.value)}
                         placeholder="ADRESSE ENTREPRISE"
                     />
                 </div>
@@ -88,7 +97,6 @@ const SignUpSection = () => {
                         value={phone_u}
                         onChange={(e)=>setPhone(e.target.value)}
                         placeholder="TÉLÉPHONE"
-                        required
                     />
                     <input
                         className="inputBox"
@@ -97,7 +105,6 @@ const SignUpSection = () => {
                         value={email}
                         onChange={(e)=>setEmail(e.target.value)}
                         placeholder="EMAIL"
-                        required
                     />
                 </div>
                 <div className="inputLogin">
@@ -108,13 +115,21 @@ const SignUpSection = () => {
                         value={password}
                         onChange={(e)=>setPassword(e.target.value)}
                         placeholder="MOT DE PASSE"
-                        required
                     />
-                    <input
+                    {/* <input
                         className="inputBox"
                         name="confirmPassword"
-                        type='password'
-                        placeholder="CONFIRMEZ MOT DE PASSE" />
+                        type='hidden'
+                        placeholder="CONFIRMEZ MOT DE PASSE"
+                    /> */}
+                    <input
+                        className="inputBox"
+                        name="key_r"
+                        type='hidden'
+                        value={key_r}
+                        onChange={(e)=>setKey_r(e.target.value)}
+                        placeholder=""
+                    />
                 </div>
                 <div className="submitSection">
                     <button

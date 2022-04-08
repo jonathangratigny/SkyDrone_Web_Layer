@@ -4,6 +4,12 @@
     background: whitesmoke;
   }
 
+.testeur{
+  display: flex;
+  flex-direction: row;
+  height: auto;
+}
+
  .titleDrone{
   text-align: center;
   text-transform: uppercase;
@@ -24,7 +30,6 @@
     -webkit-filter: drop-shadow(0 6px 20px rgba(56, 125, 255, 0.017));
     filter: drop-shadow(0 6px 20px rgba(56, 125, 255, 0.017));
     border-radius: 1rem;
-
   }
   
   .cards__wrapper {

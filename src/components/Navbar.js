@@ -32,7 +32,7 @@ function Navbar() {
   window.addEventListener('resize', showButton)
 
   const auth = localStorage.getItem('user')
-  const authParsed = JSON.parse(auth);
+  // const authParsed = JSON.parse(auth);
   const navigate = useNavigate()
   const logOut = () => {
 	  localStorage.clear()
@@ -70,7 +70,7 @@ function Navbar() {
                   
 
 					{
-						auth ? <li><Link className='nav-links' onClick={logOut} to='/'>LOGOUT</Link></li>
+						auth ? <li><Link className='nav-links' onClick={logOut} to='/'>DÉCONNEXION</Link></li>
 						:
 						<>
 						<li><Link className='hiddenbtn' to='/sign-up'><button className='btnSignUp'>INSCRIPTION</button></Link></li>
