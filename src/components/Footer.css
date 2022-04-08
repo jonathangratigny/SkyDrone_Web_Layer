@@ -1,6 +1,6 @@
-.footer-container {
+.footer-dark {
     background-color: #242424;
-    padding-top: 1rem;
+    padding-top: 2rem;
 	padding-bottom: 1.5rem;
     display: flex;
     flex-direction: column;
@@ -10,7 +10,7 @@
 }
   
 .footer-dark h3 {
-    margin-top:0;
+    margin-top: 0;
     margin-bottom:12px;
     font-weight:bold;
     font-size:16px;
@@ -20,18 +20,17 @@
     padding:0;
     list-style:none;
     line-height:1.6;
-    font-size:14px;
+    font-size: 14px;
     margin-bottom:0;
 }
   
 .footer-dark ul a {
     color:inherit;
     text-decoration:none;
-    opacity:0.6;
+    opacity: 0.6;
 }
 
-.footer-link-items p {
-    line-height: 0.8;
+footer p {
     font-size: 0.8rem;
 }
   
