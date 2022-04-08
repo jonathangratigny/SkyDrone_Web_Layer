@@ -37,6 +37,11 @@
     font-size: 1rem;
 }
 
+.myBtn:hover{
+    background-color: #229ee4;
+    border-color: #229ee4;
+}
+
 .btn:hover{
     background: #229ee4;
     border-color: #229ee4;

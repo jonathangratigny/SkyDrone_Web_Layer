@@ -42,7 +42,7 @@ const SignUpSection = () => {
         <>
         <div className="signup-container">
             <div className="test">
-            <h1 className="titleSignUp">formulaire d'inscription</h1>
+            <h1 className="titleSignUp">Formulaire d'inscription</h1>
                 <div className="inputLogin">
                     <input
                         className="inputBox"
@@ -50,7 +50,7 @@ const SignUpSection = () => {
                         type='text'
                         value={lastName_u}
                         onChange={(e)=>setLastName(e.target.value)}
-                        placeholder="NOM"
+                        placeholder="Votre Nom"
                     />
                     <input
                         className="inputBox"
@@ -58,7 +58,7 @@ const SignUpSection = () => {
                         type='text'
                         value={firstName_u}
                         onChange={(e)=>setFirstName(e.target.value)}
-                        placeholder="PRÉNOM"
+                        placeholder="Votre Prénom"
                     />
                 </div>
                 <div className="inputLogin">
@@ -68,7 +68,7 @@ const SignUpSection = () => {
                         type='text'
                         value={company_u}
                         onChange={(e)=>setCompany(e.target.value)}
-                        placeholder="NOM ENTREPRISE"
+                        placeholder="Nom de votre entreprise"
                     />
                     <input
                         className="inputBox"
@@ -86,7 +86,7 @@ const SignUpSection = () => {
                         value={address_u}
                         name="address_u"
                         onChange={(e)=>setAdress(e.target.value)}
-                        placeholder="ADRESSE ENTREPRISE"
+                        placeholder="Adresse de votre entreprise"
                     />
                 </div>
                 <div className="inputLogin">
@@ -96,7 +96,7 @@ const SignUpSection = () => {
                         type='text'
                         value={phone_u}
                         onChange={(e)=>setPhone(e.target.value)}
-                        placeholder="TÉLÉPHONE"
+                        placeholder="Téléphone"
                     />
                     <input
                         className="inputBox"
@@ -104,7 +104,7 @@ const SignUpSection = () => {
                         type='text'
                         value={email}
                         onChange={(e)=>setEmail(e.target.value)}
-                        placeholder="EMAIL"
+                        placeholder="Adresse e-mail"
                     />
                 </div>
                 <div className="inputLogin">
@@ -114,14 +114,8 @@ const SignUpSection = () => {
                         type='password'
                         value={password}
                         onChange={(e)=>setPassword(e.target.value)}
-                        placeholder="MOT DE PASSE"
+                        placeholder="Mot de passe"
                     />
-                    {/* <input
-                        className="inputBox"
-                        name="confirmPassword"
-                        type='hidden'
-                        placeholder="CONFIRMEZ MOT DE PASSE"
-                    /> */}
                     <input
                         className="inputBox"
                         name="key_r"

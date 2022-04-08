@@ -12,11 +12,9 @@
 }
 
 .titleSignUp{
-    padding-top: 3%;
-    padding-bottom: 2%;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    font-size: 1.5rem;
+    letter-spacing: 2px;
+    font-size: 2rem;
+    color: whitesmoke;
 }
 
 form{
@@ -38,7 +36,6 @@ form{
     background-color: rgb(245, 245, 245, 0.2);
     padding: 2%;
     border-radius: 25px;
-    margin-top: 3%;
 }
 
 .inputBox{
@@ -52,6 +49,7 @@ form{
     text-align: center;
     font-weight: bold;
     letter-spacing: 1px;
+    font-size: small;
 }
 
 .inputBoxLogin{
