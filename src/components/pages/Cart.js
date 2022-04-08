@@ -42,7 +42,7 @@ function Cart() {
                     ))}
                     </ul>
                 </div>
-                <div className="cart_recap w-50 p-3">
+                <div className="cart_recap p-3">
                     <h4 className="cart_title">Récapitulatif</h4>
                     <hr></hr>
                     <p className="cart_total">Total: {cartTotal}€</p>

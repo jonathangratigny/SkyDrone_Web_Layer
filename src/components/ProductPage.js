@@ -1,6 +1,5 @@
 import React from 'react';
 import './ProductPage.css';
-import { baseUrl } from '../utils/fetchApi'
 import { useCart } from "react-use-cart";
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
@@ -10,13 +9,6 @@ import 'react-date-range/dist/theme/default.css'; // theme css file
 import { addDays } from 'date-fns';
 import { useState, useEffect } from 'react';
 import * as locales from 'react-date-range/dist/locale';
-import { logDOM } from '@testing-library/react';
-
-const responsive = {
-    0: { items: 1 },
-    568: { items: 2 },
-    1024: { items: 3 },
-};
 
 const handleDragStart = (e) => e.preventDefault();
 
@@ -31,10 +23,11 @@ const DroneCard = ({ drone }) => {
 	const [state, setState] = useState({
 		change: null,
 		selection: {
-			startDate: null,
+			startDate: new Date(),
 			endDate: null,
 			key: 'selection',
 			showPreview: false,
+			color: '#40be40',
 		},
 		compare: {
 			startDate: new Date(),
@@ -42,17 +35,26 @@ const DroneCard = ({ drone }) => {
 			key: 'compare',
 			showDateDisplay: false,
 			autoFocus: false,
-			color: '#ff0000'
+			color: '#FFE53B'
 		},
 	})
 	useEffect(() => {
 		drone.startDate =  state.selection.startDate
-	drone.endDate = state.selection.endDate
-	console.log(drone)
+		drone.endDate = state.selection.endDate
+		console.log(drone)
+		
 	}, [state.selection])
+
+	drone.id = drone._id
+	drone.price = drone.pricePerDay_d
 
 	const { addItem } = useCart();
 	let category = drone.category_info ?? (drone.category_id ? drone.category_id : 'Inconnu')
+
+	let totalDay = (state.selection.endDate - state.selection.startDate) / (1000 * 60 * 60 * 24) + 1
+	let startDate = state.selection.startDate ? state.selection.startDate.toLocaleDateString() : ''
+	let endDate = state.selection.endDate ? state.selection.endDate.toLocaleDateString() : ''
+
 
 
 	return (
@@ -68,18 +70,22 @@ const DroneCard = ({ drone }) => {
 				</div>
 				<div className="productDesc"  >
 					<div className="cards__item__info">
-						<h5 className="cards__item__text">{drone.name_d} {category.name_cat ?? 'Inconnu'}</h5>
+						<h5 className="cards__item__text d-flex">{drone.name_d} <span className='ms-auto'>{category.name_cat ?? 'Inconnu'}</span></h5>
 						<hr></hr>
 						<p className="cards__item__desc">{drone.description_d}</p>
-						<footer className='d-flex align-items-center justify-content-between'>
-							<span className="cards__item__price">{drone.pricePerDay_d}€/jours</span>
-							<span className="cards__item__dispo">Disponible</span>
+						<footer className='d-flex align-items-center'>
+							<span className="cards__item__price">{drone.pricePerDay_d}€/jour</span>
+							<span className="cards__item__dispo ms-auto">Disponible</span>
+							<span className="cards__item__res ms-2">Réserver</span>
 						</footer>
-						<div className={`total mt-3 ${state.change ? '' : 'd-none'}` }>
-							<p>Période du {state.selection.startDate ? state.selection.startDate.toLocaleDateString() : ''} au {state.selection.endDate ? state.selection.endDate.toLocaleDateString() : ''} </p>
-							<p>Total : {drone.pricePerDay_d * ((Math.floor(Math.abs((state.selection.endDate - state.selection.startDate)/1000))/86400) + 1)} €</p>
+						{ state.change &&
+						<div className="total mt-3">
+							<p><span className='fw-bold'>Période :</span> {startDate} au {endDate} </p>
+							<p><span className='fw-bold'>Total :</span> {totalDay} {totalDay > 1 ? 'jours' : 'jour'}</p>
+							<p><span className='fw-bold'>Prix Total :</span> {drone.pricePerDay_d * totalDay} €</p>
 						</div>
-						<button className={`btnSignUp mt-3 ${state.change && 'disabled'}`}  disabled={!state.change} onClick={() => addItem(drone)}>Réserver</button>
+						}
+						<button className="btnSignUp mt-3"  disabled={!state.change} onClick={() => addItem(drone)}>Réserver</button>
 					</div>
 					<div className='datePicker'>
 						<p>Selectionner la periode d'utilisation</p>
