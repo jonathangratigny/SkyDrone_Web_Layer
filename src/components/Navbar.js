@@ -4,15 +4,16 @@ import './Navbar.css'
 import './Button.css'
 import { BsCalendarWeek } from "react-icons/bs";
 import { useCart } from "react-use-cart";
+import { useGlobalState } from '../App';
 
 
-function Navbar() {
-  const {
-    isEmpty,
-    totalItems
-  } = useCart();
+
+
+const Navbar = () => {
+  const { isEmpty, totalItems } = useCart();
   const [click, setClick] = useState(false)
   const [button, setButton] = useState(true)
+  const [state, dispatch] = useGlobalState();
 
   const handleClick = () => setClick(!click)
   const closeMobileMenu = () => setClick(false)
@@ -25,20 +26,8 @@ function Navbar() {
 	  }
   }
 
-  useEffect(() => {
-	  showButton()
-  }, [])
 
   window.addEventListener('resize', showButton)
-
-  const auth = localStorage.getItem('user')
-  // const authParsed = JSON.parse(auth);
-  const navigate = useNavigate()
-  const logOut = () => {
-	  localStorage.clear()
-	  navigate('/')
-    alert('Vous avez bien été déconnecté !')
-  }
 
 
   return (
@@ -67,21 +56,13 @@ function Navbar() {
                       Aperçu
                     </Link>
                   </li>
-                  
-
-					{
-						auth ? <li><Link className='nav-links' onClick={logOut} to='/'>DÉCONNEXION</Link></li>
-						:
-						<>
-						<li><Link className='hiddenbtn' to='/sign-up'><button className='btnSignUp'>INSCRIPTION</button></Link></li>
-						<li><Link className='hiddenbtn' to='/sign-in'><button className='myBtn'>CONNEXION</button></Link></li>
-						</>
-					}
 
           			{
-						auth ? <li><Link className='nav-links' to='/dashboard'>MON COMPTE</Link></li>
+						state.auth ? <li><Link className='nav-links' to='/dashboard'>MON COMPTE</Link></li>
 						:
 						<>
+            <li><Link className='hiddenbtn' to='/sign-up'><button className='btnSignUp'>INSCRIPTION</button></Link></li>
+						<li><Link className='hiddenbtn' to='/sign-in'><button className='myBtn'>CONNEXION</button></Link></li>
 						</>
 					}
 

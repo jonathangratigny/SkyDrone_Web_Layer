@@ -78,7 +78,6 @@ const Drones = () => {
             }
         </div>
         
-        <Footer />
         </>
     )
 }

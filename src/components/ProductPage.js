@@ -9,29 +9,48 @@ import 'react-date-range/dist/theme/default.css'; // theme css file
 import { addDays } from 'date-fns';
 import { useState, useEffect } from 'react';
 import * as locales from 'react-date-range/dist/locale';
+import Modal from 'styled-react-modal'
+import { BsFillCheckCircleFill, BsFillXCircleFill } from 'react-icons/bs'
+import { Link } from 'react-router-dom'
 
 const handleDragStart = (e) => e.preventDefault();
 
-const items = [
+const images = [
 	<img src="/images/img-2.png" onDragStart={handleDragStart} alt="presentation" />,
 	<img src="/images/img-3.png" onDragStart={handleDragStart} alt="presentation" />,
 	<img src="/images/img-9.png" onDragStart={handleDragStart} alt="presentation" />,
-  ];
+];
 
 
-const DroneCard = ({ drone }) => {
-	const [state, setState] = useState({
+
+const ProductPage = ({ drone }) => {
+	const {
+		isEmpty,
+		totalUniqueItems,
+		items,
+		updateItemQuantity,
+		updateItem,
+		removeItem,
+		cartTotal,
+		totalItems
+	  } = useCart();
+	
+console.log(items);
+
+	
+	const [state, setState] = useState( {
+		unique: true,
 		change: null,
 		selection: {
 			startDate: new Date(),
-			endDate: null,
+			endDate: addDays(new Date(), 5),
 			key: 'selection',
 			showPreview: false,
 			color: '#40be40',
 		},
 		compare: {
 			startDate: new Date(),
-			endDate: addDays(new Date(), 3),
+			endDate: addDays(new Date(), 2),
 			key: 'compare',
 			showDateDisplay: false,
 			autoFocus: false,
@@ -39,14 +58,36 @@ const DroneCard = ({ drone }) => {
 		},
 	})
 	useEffect(() => {
+		items.forEach(item => { 
+			if (item._id === drone._id) {
+			setState(prevState => ({
+				...prevState,
+				unique: false,
+				selection: {
+					...prevState.selection,
+					startDate: new Date(item.startDate),
+					endDate: new Date(item.endDate)
+			}}))
+		}})
+	}, [])
+
+	useEffect(() => {
 		drone.startDate =  state.selection.startDate
 		drone.endDate = state.selection.endDate
-		console.log(drone)
-		
+		items.forEach(item => { 
+			if (item._id === drone._id) {
+			setState(prevState => ({
+				...prevState,
+				unique: false
+				}))
+		}})
+		console.log(state);
 	}, [state.selection])
 
 	drone.id = drone._id
 	drone.price = drone.pricePerDay_d
+	
+
 
 	const { addItem } = useCart();
 	let category = drone.category_info ?? (drone.category_id ? drone.category_id : 'Inconnu')
@@ -54,19 +95,73 @@ const DroneCard = ({ drone }) => {
 	let totalDay = (state.selection.endDate - state.selection.startDate) / (1000 * 60 * 60 * 24) + 1
 	let startDate = state.selection.startDate ? state.selection.startDate.toLocaleDateString() : ''
 	let endDate = state.selection.endDate ? state.selection.endDate.toLocaleDateString() : ''
+	let locations = [[state.compare.startDate, state.compare.endDate]]
+
+	const [isOpen, setIsOpen] = useState(false)
+	const [ modalSettings, setModalSettings] = useState({
+		text: '',
+		color: '',
+		icon: null,
+		state: ''
+	})
+	useEffect(() => {
+		locations.forEach(loc => {
+			if ((loc[0] > state.selection.endDate && loc[1] > state.selection.endDate) || (loc[0] < state.selection.startDate && loc[1] < state.selection.startDate)) {
+				modalSettings.text = 'Votre drone a bien été ajouté au panier'
+				modalSettings.color = '#40be40'
+				modalSettings.icon = <BsFillCheckCircleFill />
+				modalSettings.state = true
+			} else {
+				modalSettings.text = 'Date non disponible'
+				modalSettings.color = 'red'
+				modalSettings.icon = <BsFillXCircleFill />
+				modalSettings.state = false
+			}
+		})
+	}, [state.selection])
+
+	function isValidDate() {
+		toggleModal()
+		if (modalSettings.state && state.unique) {
+			addItem(drone)  
+		} else {
+			updateItem(drone.id, drone)
+		}
+	}
 
 
+	const StyledModal = Modal.styled`
+		width: 20rem;
+		height: auto;
+		padding: 1rem;
+		display: flex;
+		flex-direction: column;
+		border-radius: 0.5rem;
+		border: none;
+		gap: 1rem;
+		align-items: center;
+		justify-content: center;
+		background-color: white;
+		.logo {
+			font-size: 3rem;
+			color: ${modalSettings.color};
+		}
+		`
 
-	return (
+	function toggleModal(e) {
+		setIsOpen(!isOpen)
+	}
+	
+	return  (
 			<div className="cards_container m-auto d-flex my-5">
-				<div className="productCarousel"  >
+				<div className="productCarousel" >
 					<AliceCarousel 
 					mouseTracking 
 					autoPlay 
 					infinite 
 					autoPlayInterval={2000} 
 					animationDuration={1000} 
-					items={items} />
+					items={images} />
 				</div>
 				<div className="productDesc"  >
 					<div className="cards__item__info">
@@ -85,7 +180,18 @@ const DroneCard = ({ drone }) => {
 							<p><span className='fw-bold'>Prix Total :</span> {drone.pricePerDay_d * totalDay} €</p>
 						</div>
 						}
-						<button className="btnSignUp mt-3"  disabled={!state.change} onClick={() => addItem(drone)}>Réserver</button>
+						<button className="btnSignUp  mt-3"  disabled={!state.change} onClick={() => isValidDate()}>Réserver</button>
+						<StyledModal
+							isOpen={isOpen}
+							onBackgroundClick={toggleModal}
+							onEscapeKeydown={toggleModal}>
+							<div className='logo'>{modalSettings.icon}</div>
+							<span>{modalSettings.text }</span>
+							<div className='d-flex w-100'>
+								<Link to="/cart" className='btn btn-outline-primary'>Acceder au panier</Link>
+								<button className='btn btn-outline-secondary ms-auto'  onClick={toggleModal}>Fermer</button>
+							</div>
+						</StyledModal>
 					</div>
 					<div className='datePicker'>
 						<p>Selectionner la periode d'utilisation</p>
@@ -99,7 +205,7 @@ const DroneCard = ({ drone }) => {
 							scroll={{ enabled: true }}
 							ranges={[state.selection, state.compare]}
 							locale={locales['fr']}
-							/>
+						/>
 						</div>
 				</div>
 			</div>
@@ -107,4 +213,4 @@ const DroneCard = ({ drone }) => {
  	);
 }
 
-export default DroneCard;
+export default ProductPage;

@@ -1,6 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 import './App.css';
 import Home from './components/pages/Home';
 import DronesPage from './components/pages/Drones';
@@ -13,29 +14,74 @@ import Cart from './components/pages/Cart';
 import { ParallaxProvider } from 'react-scroll-parallax';
 import ErrorSection from './components/Error404';
 import UsersDetails from './components/UsersDetails';
+import UserOrders from './components/UserOrders';
 import UpdateUsersDetails from './components/UpdateUsersDetails';
+import { ModalProvider } from 'styled-react-modal'
+
+const isConnected = () => { // initialise l'état de la connexion
+  const auth = localStorage.getItem('user')
+  if (auth) {
+      return true
+  } else {
+      return false
+  }
+}
+
+const globalState = {
+  auth: isConnected(),
+}
+
+const GlobalStateContext = React.createContext(globalState)
+const DispatchStateContext = React.createContext(undefined)
+
+const GlobalStateProvider = ({ children }) => {
+  const [state, dispatch] = React.useReducer(
+    (state, newValue) => ({ ...state, ...newValue }),
+    globalState
+  )
+  return (
+    <GlobalStateContext.Provider value={state}>
+      <DispatchStateContext.Provider value={dispatch}>
+        {children}
+      </DispatchStateContext.Provider>
+    </GlobalStateContext.Provider>
+  );
+};
+
+
+export const useGlobalState = () => [
+  React.useContext(GlobalStateContext),
+  React.useContext(DispatchStateContext)
+]
+
+
 
 const App = () => {
   return (
     <>
+    <GlobalStateProvider>
       <ParallaxProvider>
-      <Router>
-        <Navbar />
-        <Routes>
-          <Route path='/' exact element={<Home />}></Route>
-          <Route path='/products/*' exact element={<DronesPage />}></Route>
-          <Route path='/services' exact element={<Services />}></Route>
-          <Route path='/sign-up' exact element={<SignUp />}></Route>
-          <Route path='/sign-in' exact element={<SignIn />}></Route>
-          <Route path='/dashboard' exact element={<UserDashboard />}></Route>
-          <Route path='/cart' exact element={<Cart />}></Route>
-          <Route path='/mesinfos' exact element={<UsersDetails />}></Route>
-          <Route path='/updateuserdetails' exact element={<UpdateUsersDetails />}></Route>
-          <Route path='/*' exact element={<ErrorSection />}></Route>
-        </Routes>
-
-      </Router>
+        <ModalProvider>
+          <Router>
+            <Navbar />
+            <Routes>
+              <Route path='/' exact element={<Home />}></Route>
+              <Route path='/products/*' exact element={<DronesPage />}></Route>
+              <Route path='/services' exact element={<Services />}></Route>
+              <Route path='/sign-up' exact element={<SignUp />}></Route>
+              <Route path='/sign-in' exact element={<SignIn />}></Route>
+              <Route path='/dashboard' exact element={<UserDashboard />}></Route>
+              <Route path='/cart' exact element={<Cart />}></Route>
+              <Route path='/mesinfos' exact element={<UsersDetails />}></Route>
+              <Route path='/orders' exact element={<UserOrders />}></Route>
+              <Route path='/updateuserdetails' exact element={<UpdateUsersDetails />}></Route>
+              <Route path='/*' exact element={<ErrorSection />}></Route>
+            </Routes>
+            <Footer />
+          </Router>
+        </ModalProvider>
       </ParallaxProvider>
+    </GlobalStateProvider>
     </>
   );
 }

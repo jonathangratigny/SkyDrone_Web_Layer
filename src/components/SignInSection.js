@@ -4,19 +4,14 @@ import './SignUpSection.css'
 import Footer from "./Footer"
 import { baseUrl } from "../utils/fetchApi"
 import { useNavigate, useParams } from "react-router-dom"
+import { useGlobalState } from '../App';
 
 const SignInSection = () => {
     const [email, setEmail] = React.useState('')
     const [password, setPassword] = React.useState('')
-    const { id } = useParams()
     const navigate = useNavigate()
-    useEffect(() => {
-        const auth = localStorage.getItem('user')
-        if(auth)
-            {
-                navigate('/dashboard')
-            }
-    }, [])
+    const [state, dispatch] = useGlobalState()
+
     const handleLogin = async () => {
         console.warn(email, password)
         let result = await fetch(`${baseUrl}/login`,{
@@ -31,10 +26,10 @@ const SignInSection = () => {
         // const inBase = fetch(`${baseUrl}/users/${id}`)
         if(checkConnexion){
             localStorage.setItem('user', JSON.stringify(checkConnexion))
-            navigate('/dashboard')
+            dispatch({auth: true})
+            navigate('/')
         } else {
-            alert("Identifiants incorrects")
-            console.log('echo');
+            navigate('/')
         }
     }
     

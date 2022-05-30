@@ -7,7 +7,6 @@ function Services() {
     return (
         <>
             <ServicesSection />
-            <Footer />
         </>
     )
 }
