@@ -119,6 +119,7 @@
   }
 
   .cards__item__desc{
+    text-align: justify;
     color: #252e48;
     font-size: 15px;
     height: auto;

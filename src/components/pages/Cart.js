@@ -6,6 +6,7 @@ import { baseUrl } from "../../utils/fetchApi"
 import { Link } from 'react-router-dom'
 import Modal from 'styled-react-modal'
 
+
 const StyledModal = Modal.styled`
     width: 20rem;
     height: auto;
@@ -59,7 +60,8 @@ function Cart() {
                 endAt_o: item.endDate,
                 createdBy_o: JSON.parse(localStorage.getItem('user')).user._id,
                 createdAt_o: new Date(),
-                report_o: 'Ok'
+                key_r: JSON.parse(localStorage.getItem('user')).user.key_r,
+                report_o: 'commande initiale'
             }
             fetch(`${baseUrl}/orders`,{
                 method:'post',
@@ -109,14 +111,13 @@ function Cart() {
                     <hr></hr>
                     <ul className='list-group'>
                     {items.map((item, key) =>  (
-                        
                         <li key={item.id} className="list-group-item d-flex p-3">
                             <div className="item_image">
-                                <img src='./images/img-9.png' alt='drone' className='cart_item__img w-100'></img>
+                                <img src={`./images/${item.id}.png`} alt='drone' className='cart_item__img w-100'></img>
                             </div>
                             <div className="item_details flex-grow-1 d-flex flex-column">
-                                <div className="item_desc d-flex justify-content-between">
-                                    <div className="item_title">{item.name_d}</div>
+                                <div className="item_desc d-flex justify-content-between mb-2">
+                                    <div className="item_title text-uppercase">{item.name_d}</div>
                                     <div>Du {displayDateStart(key)} au {displayDateEnd(key)}</div>
                                     <div className="item_price">{item.price}€/jours</div>
                                 </div>
@@ -141,7 +142,7 @@ function Cart() {
                     <h4 className="cart_title">Récapitulatif</h4>
                     <hr></hr>
                     <p className="cart_total">Nombre de drone: {totalUniqueItems}</p>
-                    <p className="cart_total">Total: {cartTotal}€</p>
+                    <p className="cart_total">Total: {cartTotal} €</p>
                     <button className='btn btn-dark w-100' type="button" onClick={checkout}>Passer la réservation</button>
                 </div>
             </div>
