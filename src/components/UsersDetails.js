@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { baseUrl } from '../utils/fetchApi'
-import './UsersDetails.css'
+import './Dashboard.css'
 import Footer from './Footer';
 
 function UsersDetails () {
@@ -41,7 +41,7 @@ function UsersDetails () {
     return(
         <>
             <div className='detailsUsers'>
-            <h1 className='titleServices'>mes informations personnelles</h1>
+            <h1 className='titleUserAccount'>Mes informations personnelles</h1>
                 <div>
                     <p>Votre nom : {authParsed.user.lastName_u}</p>
                     <p>Votre prénom : {authParsed.user.firstName_u}</p>

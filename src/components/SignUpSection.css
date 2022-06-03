@@ -8,7 +8,6 @@
     align-items: center;
     box-shadow: inset 0 0 0 1000px rgb(0,0,0,0.2);
     object-fit: contain;
-    /* background-color: whitesmoke; */
 }
 
 .titleSignUp{
@@ -36,6 +35,7 @@ form{
     background-color: rgb(245, 245, 245, 0.2);
     padding: 2%;
     border-radius: 25px;
+    margin-top: 5%;
 }
 
 .inputBox{

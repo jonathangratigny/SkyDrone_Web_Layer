@@ -1,33 +1,28 @@
 import React, {useState} from 'react';
 import { baseUrl } from '../utils/fetchApi'
 import { useNavigate } from "react-router-dom"
-import './SignUpSection.css'
+import './Dashboard.css'
 import Footer from './Footer';
 
 const UpdateUsersDetails = () => {
-    const [formData, setFormData] = React.useState(
-        {
-            lastName_u: "",
-            firstName_u: "",
-            company_u: "",
-            phone_u: "",
-            address_u: "",
-            siret_u: "",
-            email: "",
-            key_r: "0"
-        }
-    )
+    const [lastName_u, setLastName] = useState('')
+    const [firstName_u, setFirstName] = useState('')
+    const [company_u, setCompany] = useState('')
+    const [phone_u, setPhone] = useState('')
+    const [address_u, setAdress] = useState('')
+    const [siret_u, setSiret] = useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [key_r, setKey_r] = useState('0')
 
-    console.log(formData);
-
-    function handleChange(event){
-        setFormData(prevFormData => {
-            return {
-                ...prevFormData,
-                [event.target.name]: event.target.value
-            }
-        })
-    }
+    // function handleChange(event){
+    //     setFormData(prevFormData => {
+    //         return {
+    //             ...prevFormData,
+    //             [event.target.name]: event.target.value
+    //         }
+    //     })
+    // }
 
     const navigate = useNavigate()
 
@@ -38,7 +33,7 @@ const UpdateUsersDetails = () => {
     function updateUserDetails(){
         let result = fetch(`${baseUrl}/users/${authParsed.user._id}`, {
             method:'PATCH',
-            body:JSON.stringify(formData),
+            body:JSON.stringify(auth),
             headers:{
                 'Content-Type':"application/json"
             }
@@ -52,22 +47,23 @@ const UpdateUsersDetails = () => {
 
     return (
         <>
-            <h1 className="titleSignUp">Modifier mes informations</h1>
+            <h1 className="titleUserAccount">Modifier mes informations</h1>
                 <form onSubmit={updateUserDetails}>
                     <div className='inputLogin'>
                     <input
                         className="inputBox"
                         name="lastName_u"
                         type='text'
-                        onChange={handleChange}
+                        value={authParsed.user.lastName_u}
+                        onChange={(e)=>setLastName(e.target.value)}
                         placeholder="NOM"
                     />
                     <input
                         className="inputBox"
                         name="firstName_u"
                         type='text'
-                        value={formData.firstName_u}
-                        onChange={handleChange}
+                        value={authParsed.user.firstName_u}
+                        onChange={(e)=>setFirstName(e.target.value)}
                         placeholder="PRÉNOM"
                     />
                     </div>
@@ -77,7 +73,7 @@ const UpdateUsersDetails = () => {
                         name="company_u"
                         type='text'
                         value={authParsed.user.company_u}
-                        onChange={handleChange}
+                        onChange={(e)=>setCompany(e.target.value)}
                         placeholder="NOM ENTREPRISE"
                     />
                     <input
@@ -85,7 +81,7 @@ const UpdateUsersDetails = () => {
                         name="siret_u"
                         type='text'
                         value={authParsed.user.siret_u}
-                        onChange={handleChange}
+                        onChange={(e)=>setSiret(e.target.value)}
                         placeholder="SIRET"
                     />
                     </div>
@@ -95,7 +91,7 @@ const UpdateUsersDetails = () => {
                         type='text'
                         value={authParsed.user.address_u}
                         name="address_u"
-                        onChange={handleChange}
+                        onChange={(e)=>setAdress(e.target.value)}
                         placeholder="ADRESSE ENTREPRISE"
                     />
                     </div>
@@ -105,7 +101,7 @@ const UpdateUsersDetails = () => {
                         name="phone_u"
                         type='text'
                         value={authParsed.user.phone_u}
-                        onChange={handleChange}
+                        onChange={(e)=>setPhone(e.target.value)}
                         placeholder="TÉLÉPHONE"
                     />
                     <input
@@ -113,7 +109,7 @@ const UpdateUsersDetails = () => {
                         name="email"
                         type='text'
                         value={authParsed.user.email}
-                        onChange={handleChange}
+                        onChange={(e)=>setEmail(e.target.value)}
                         placeholder="EMAIL"
                     />
                     <input
@@ -121,7 +117,7 @@ const UpdateUsersDetails = () => {
                         name="key_r"
                         type='hidden'
                         value={authParsed.user.key_r}
-                        onChange={handleChange}
+                        onChange={(e)=>setKey_r(e.target.value)}
                     />
                     </div>
                 <div className="submitSection">

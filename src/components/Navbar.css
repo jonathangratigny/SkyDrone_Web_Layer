@@ -1,11 +1,13 @@
 .myNavbar {
-    background: linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(26, 23, 23, 0.8) 100%);
+    /* background: linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(26, 23, 23, 0.8) 100%); */
+    background-color: #0000009f;
     height: 80px;
     display: flex;
     /* justify-content: center;
     align-items: center; */
     font-size: 1.2rem;
-    /* position: fixed; */
+    position: fixed;
+    width: 100%;
     top: 0;
     z-index: 999;
     flex: 1;
@@ -14,16 +16,12 @@
   .navbar-container {
     display: flex;
     width: 100%;
-    /* justify-content: center;
-    align-items: center;
-    height: 80px;
-    max-width: 1500px; */
     justify-content: space-between;
   }
   
   .navbar-logo {
     color: #fff;
-    padding: 0 1rem;
+    padding: 1rem 5%;
     justify-self: start;
     letter-spacing: 2px;
     cursor: pointer;
@@ -33,6 +31,10 @@
     align-items: center;
     font-weight: bold;
   }
+
+.navbar-logo:hover{
+  color: white;
+}
   
   .fa-typo3 {
     margin-left: 0.5rem;

@@ -14,7 +14,7 @@ const SignInSection = () => {
         const auth = localStorage.getItem('user')
         if(auth)
             {
-                navigate('/dashboard')
+                
             }
     }, [])
     const handleLogin = async () => {
@@ -31,7 +31,6 @@ const SignInSection = () => {
         // const inBase = fetch(`${baseUrl}/users/${id}`)
         if(checkConnexion){
             localStorage.setItem('user', JSON.stringify(checkConnexion))
-            navigate('/dashboard')
         } else {
             alert("Identifiants incorrects")
             console.log('echo');

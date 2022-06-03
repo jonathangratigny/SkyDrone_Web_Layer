@@ -70,7 +70,7 @@ const DroneCard = ({ drone }) => {
 				</div>
 				<div className="productDesc"  >
 					<div className="cards__item__info">
-						<h5 className="cards__item__text d-flex">{drone.name_d} <span className='ms-auto'>{category.name_cat ?? 'Inconnu'}</span></h5>
+						<h5 className="cards__item__text d-flex">{drone.name_d} <span className='ms-auto'>catégorie : {category.name_cat ?? 'Inconnu'}</span></h5>
 						<hr></hr>
 						<p className="cards__item__desc">{drone.description_d}</p>
 						<footer className='d-flex align-items-center'>
