@@ -21,7 +21,7 @@ h1{
 }
 
 .contentAbout{
-    margin-top: 5%;
+    /* margin-top: 1rem; */
 	width: 100%;
 	padding-right: 2%;
 	text-align: justify;

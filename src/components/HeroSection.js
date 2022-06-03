@@ -9,7 +9,7 @@ function HeroSection() {
             <h1>SKY DRONE</h1>
             <p>Votre prestataire aérien pour tous vos projets.</p>
             <div className="hero-btns">
-                <Button className='btns' buttonStyle='btn--outline' buttonSize='btn--large'>découvrir</Button>
+                <Button className='btns' buttonStyle='btn--outline' buttonSize='btn--large'>réserver</Button>
             </div>
         </div>
     )

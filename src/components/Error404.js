@@ -9,7 +9,7 @@ const ErrorSection = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const data = await fetch(`${baseUrl}/*`);
+            const data = await fetch(`${baseUrl}/`);
             const json = await data.json()
             setError(json)
         }

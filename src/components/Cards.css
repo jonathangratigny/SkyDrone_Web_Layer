@@ -111,6 +111,7 @@
   }
   
   .cards__item__text {
+    height: 2.5rem;
     color: #252e48;
     font-size: 18px;
     line-height: 25px;

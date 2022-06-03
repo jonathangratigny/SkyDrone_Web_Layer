@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import './Navbar.css'
 import './Button.css'
 import { BsCalendarWeek } from "react-icons/bs";
@@ -51,18 +51,18 @@ const Navbar = () => {
                       Drones
                     </Link>
                   </li>
-                  <li className='nav-item'>
+                  {/* <li className='nav-item'>
                     <Link to='/services' className='nav-links' onClick={closeMobileMenu}>
                       Aperçu
                     </Link>
-                  </li>
+                  </li> */}
 
           			{
-						state.auth ? <li><Link className='nav-links' to='/dashboard'>MON COMPTE</Link></li>
+						state.auth ? <li><Link className='nav-links' to='/dashboard'>Mon Compte</Link></li>
 						:
 						<>
-            <li><Link className='hiddenbtn' to='/sign-up'><button className='btnSignUp'>INSCRIPTION</button></Link></li>
-						<li><Link className='hiddenbtn' to='/sign-in'><button className='myBtn'>CONNEXION</button></Link></li>
+            <li><Link className='hiddenbtn' to='/sign-up'><button className='btnSignUp'>Inscription</button></Link></li>
+						<li><Link className='hiddenbtn' to='/sign-in'><button className='myBtn'>Connexion</button></Link></li>
 						</>
 					}
 

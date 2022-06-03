@@ -26,8 +26,8 @@ const UserDashboard = () => {
             <h1 className='titleDrone'>Mon compte</h1>
         </div>
         <div className="container mt-3">
-            <h2>Bienvenue {authParsed.user.firstName_u} {authParsed.user.lastName_u}</h2>
-            <div className='d-flex flex-column mt-5'>
+            <h2 className='text-center mt-3'>Bienvenue {authParsed.user.firstName_u} {authParsed.user.lastName_u}</h2>
+            <div className='d-flex flex-column mt-5 align-items-center'>
                 <Link to="/mesinfos" className='hola'>
                     Informations personnelles
                 </Link>
@@ -38,8 +38,8 @@ const UserDashboard = () => {
                     Historique réservations
                 </Link>
             </div>
-            <div className='my-3'>
-                {auth ? <Link className='btnSignUp' onClick={logOut} to='/'>DÉCONNEXION</Link> : ''}
+            <div className='my-3 text-center'>
+                {auth ? <Link className='btnSignUp ' onClick={logOut} to='/'>DÉCONNEXION</Link> : ''}
             </div>
         </div>
         </>

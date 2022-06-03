@@ -15,15 +15,16 @@ import { Link } from 'react-router-dom'
 
 const handleDragStart = (e) => e.preventDefault();
 
-const images = [
-	<img src="/images/img-2.png" onDragStart={handleDragStart} alt="presentation" />,
-	<img src="/images/img-3.png" onDragStart={handleDragStart} alt="presentation" />,
-	<img src="/images/img-9.png" onDragStart={handleDragStart} alt="presentation" />,
-];
+
 
 
 
 const ProductPage = ({ drone }) => {
+	const images = [
+	<img src={`/images/${drone._id}-1.jpeg`} onDragStart={handleDragStart} alt="presentation" />,
+	<img src={`/images/${drone._id}-2.jpeg`} onDragStart={handleDragStart} alt="presentation" />,
+	<img src={`/images/${drone._id}-3.jpeg`} onDragStart={handleDragStart} alt="presentation" />,
+];
 	const {
 		isEmpty,
 		totalUniqueItems,
@@ -34,9 +35,6 @@ const ProductPage = ({ drone }) => {
 		cartTotal,
 		totalItems
 	  } = useCart();
-	
-console.log(items);
-
 	
 	const [state, setState] = useState( {
 		unique: true,
@@ -104,6 +102,8 @@ console.log(items);
 		icon: null,
 		state: ''
 	})
+
+
 	useEffect(() => {
 		locations.forEach(loc => {
 			if ((loc[0] > state.selection.endDate && loc[1] > state.selection.endDate) || (loc[0] < state.selection.startDate && loc[1] < state.selection.startDate)) {
@@ -160,7 +160,12 @@ console.log(items);
 					autoPlay 
 					infinite 
 					autoPlayInterval={2000} 
-					animationDuration={1000} 
+					animationDuration={1000}
+					responsive={ {
+						0: { items: 1 },
+						600: { items: 1 },
+						1000: { items: 1 },
+					}}
 					items={images} />
 				</div>
 				<div className="productDesc"  >

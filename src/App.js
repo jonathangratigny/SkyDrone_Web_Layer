@@ -20,7 +20,7 @@ import { ModalProvider } from 'styled-react-modal'
 
 const isConnected = () => { // initialise l'état de la connexion
   const auth = localStorage.getItem('user')
-  if (auth.user ) {
+  if (auth !== null && auth !== undefined) {
       return true
   } else {
       return false
@@ -67,7 +67,7 @@ const App = () => {
             <Routes>
               <Route path='/' exact element={<Home />}></Route>
               <Route path='/products/*' exact element={<DronesPage />}></Route>
-              <Route path='/services' exact element={<Services />}></Route>
+              {/* <Route path='/services' exact element={<Services />}></Route> */}
               <Route path='/sign-up' exact element={<SignUp />}></Route>
               <Route path='/sign-in' exact element={<SignIn />}></Route>
               <Route path='/dashboard' exact element={<UserDashboard />}></Route>
