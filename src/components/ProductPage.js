@@ -175,8 +175,8 @@ const ProductPage = ({ drone }) => {
 						<p className="cards__item__desc">{drone.description_d}</p>
 						<footer className='d-flex align-items-center'>
 							<span className="cards__item__price">{drone.pricePerDay_d}€/jour</span>
-							<span className="cards__item__dispo ms-auto">Disponible</span>
-							<span className="cards__item__res ms-2">Réserver</span>
+							<span className="cards__item__dispo ms-auto">Drone Disponible</span>
+							<span className="cards__item__res ms-2">Drone Réservé</span>
 						</footer>
 						{ state.change &&
 						<div className="total mt-3">
@@ -199,7 +199,6 @@ const ProductPage = ({ drone }) => {
 						</StyledModal>
 					</div>
 					<div className='datePicker'>
-						<p>Selectionner la periode d'utilisation</p>
 						<hr></hr>
 						<DateRange
 							onChange={item => setState({ ...state, ...item, change: true })}
