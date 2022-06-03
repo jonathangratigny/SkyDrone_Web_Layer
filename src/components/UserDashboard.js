@@ -1,22 +1,47 @@
 import React from 'react'
 import './ServicesSection.css'
-import Footer from './Footer';
-import './Dashboard.css'
+import { Link, useNavigate } from 'react-router-dom'
+import { useGlobalState } from '../App';
 
-function UserDashboard() {
+
+
+
+const UserDashboard = () => {
     const auth = localStorage.getItem('user')
     const authParsed = JSON.parse(auth);
-    console.log(auth)
+    const navigate = useNavigate()
+    const [state, dispatch] = useGlobalState();
+
+    const logOut = () => {
+        localStorage.clear()
+        dispatch({ auth: false })
+        navigate('/')
+    }
     return(
         <>
-        <h1 className='titleUserAccount'>MON COMPTE</h1>
-        <h2 className='nameWelcolme'>Bienvenue <span className='nameUser'>{authParsed.user.firstName_u} {authParsed.user.lastName_u}</span></h2>
-        <div className='divBtnDashboard'>
-            <a href=''><button className='hola'>Mes réservations en cours</button></a>
-            <a href='/mesinfos'><button className='hola'>Informations personnelles</button></a>
-            <a href=''><button className='hola'>Historique réservations</button></a>
+        <div  className='hero'>
+            <div className="hero_overlay">
+                <img  src='./images/hero_product.jpg' alt='drone' className='hero__img'></img>
+            </div>
+            <h1 className='titleDrone'>Mon compte</h1>
         </div>
-        <Footer />
+        <div className="container mt-3">
+            <h2>Bienvenue {authParsed.user.firstName_u} {authParsed.user.lastName_u}</h2>
+            <div className='d-flex flex-column mt-5'>
+                <Link to="/mesinfos" className='hola'>
+                    Informations personnelles
+                </Link>
+                <Link to="/orders" className='hola'>
+                    Réservations en cours
+                </Link>
+                <Link to="/history" className='hola'>
+                    Historique réservations
+                </Link>
+            </div>
+            <div className='my-3'>
+                {auth ? <Link className='btnSignUp' onClick={logOut} to='/'>DÉCONNEXION</Link> : ''}
+            </div>
+        </div>
         </>
     )
 }

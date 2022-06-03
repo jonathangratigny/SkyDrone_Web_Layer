@@ -1,0 +1,12 @@
+.cart_recap {
+    width: clamp(300px, 30%, 100%);
+}
+
+.cart_container {
+    flex-wrap: wrap-reverse;
+}
+
+.item_image {
+    width: 150px;
+    margin-right: 1rem;
+}

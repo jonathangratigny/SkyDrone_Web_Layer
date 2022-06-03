@@ -10,7 +10,6 @@ function UsersDetails () {
 
     const auth = localStorage.getItem('user')
     const authParsed = JSON.parse(auth);
-    console.log('log auth:' + auth)
 
     useEffect(() => {
         const fetchData = async () => {
@@ -19,7 +18,6 @@ function UsersDetails () {
             setUsers(json)
         }
         fetchData()
-
     }, [])
 
     function deleteUser(){

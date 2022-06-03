@@ -20,7 +20,6 @@ const Drone = () => {
         <div className='container '>
                 <ProductPage drone={drone}/>
         </div>
-            <Footer />
         </>
     ) : null
 }

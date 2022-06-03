@@ -5,8 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Footer() {
   return (
-    <div className="footer-dark">
-        <footer>
+        <footer className="footer-dark mt-auto">
             <div className="container">
                 <div className="row">
                     <div className="col-sm-6 col-md-3 item">
@@ -39,7 +38,6 @@ function Footer() {
                 <p className="copyright">SKY DRONE © 2022</p>
             </div>
         </footer>
-    </div>
   );
 }
 
