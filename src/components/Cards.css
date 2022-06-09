@@ -167,6 +167,11 @@
   color: rgb(64, 190, 64);
 }
 
+.cards__item__indispo {
+  color: rgb(190, 66, 64);
+  text-decoration: line-through;
+}
+
 .cards__item__dispo::before, .cards__item__res::before {
   content: "";
   display: inline-block;

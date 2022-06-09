@@ -15,7 +15,8 @@ const DroneCard = ({ drone }) => {
 					{/* <p className="cards__item__desc">{drone.description_d}</p> */}
 					<footer className='d-flex align-items-center justify-content-between'>
 						<span className="cards__item__price">{drone.pricePerDay_d}€/jours</span>
-						<span className="cards__item__dispo">{drone.state}</span>
+						
+						<span className={drone.state === 'En Stock' ? "cards__item__dispo" : "cards__item__indispo"}>{drone.state}</span>
 					</footer>
 				</div>
 					<button className="btnSignUp">Réserver</button>

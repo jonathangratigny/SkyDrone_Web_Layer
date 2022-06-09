@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
 import { baseUrl } from '../utils/fetchApi'
 import './UsersDetails.css'
 import Footer from './Footer'
 
 function UserOrders() {
-    const [users, setUsers] = useState([])
+
     const [orders, setOrders] = useState([])
-    const navigate = useNavigate()
+    // const [images, setImages] = useState([])
 
     const auth = localStorage.getItem('user')
     const authParsed = JSON.parse(auth)
@@ -25,11 +24,42 @@ function UserOrders() {
             setOrders(allOrders)
         }
         fetchData()
-    }, [])
+    }, [authParsed.token, authParsed.user._id])
 
+    
+
+    //     //charge les images des drones
+    //     const fetchImages = async () => {
+    //         const data = await fetch(`${baseUrl}/images/`, {
+    //             method: 'GET',
+    //             headers: {
+    //                 'Content-Type': 'a',
+    //                 'Authorization': `Bearer ${authParsed.token}`
+    //             }
+    //         })
+    // //creer un blob
+    //         const images = await data.json()
+    //         setImages(images)   
+    //     }
+
+    //     useEffect(() => {
+    //         fetchImages()
+    //     }, [])
+    //     console.log(images)
+
+
+    //formate la date
     const formatDate = (date) => {
         return new Date(date).toLocaleDateString()
     }
+
+    //retire un jour de la date
+    function removeDay(date, days) {
+        var result = new Date(date);
+        result.setDate(result.getDate() - days);
+        return result;
+    }
+
 
     // calcule le nombre de jours
     const getDays = (startDate, endDate) => {
@@ -59,13 +89,47 @@ function UserOrders() {
                                         <div className="item_image">
                                             <img src={`./images/${order.drone_id._id}.png`} alt={order.drone_id.name_d} className='cart_item__img w-100' />
                                         </div>
-                                        <p>Date de la commande : {formatDate(order.createdAt)}</p>
-                                        {order.state_o = 'En attente' ?
-                                            <p> État : <span className='text-warning' > {order.state_o}</span> (dernière mise à jour il y a {getDays(order.createdAt, Date.now())} jour{getDays(order.createdAt, Date.now()) > 1 ? 's' : ''})</p>
-                                            :
-                                            <p> État : <span className='text-success'> {order.state_o}</span> (dernière mise à jour il y a {getDays(order.createdAt, Date.now())} jour{getDays(order.createdAt, Date.now()) > 1 ? 's' : ''})</p>
+                                        <p>{order._id}</p>
+                                        {
+                                            order.state_o === 'En attente de validation' ?
+                                                <div>
+                                                    <p> État : <span className='text-warning' > {order.state_o}</span></p>
+                                                    <p>Votre demande est à l'étude. Nous vous informerons de son status très prochainement. (Dernière mise à jour il y a {getDays(order.createdAt, Date.now())} jour{getDays(order.createdAt, Date.now()) > 1 ? 's' : ''}).</p>
+                                                </div>
+
+                                                : order.state_o === 'Acceptée' ?
+                                                    <div>
+                                                        <p>État : <span className='text-success'> {order.state_o}</span></p>
+                                                        <p>Votre demande a été acceptée. Votre drone vous sera livré au plus tard le {formatDate(removeDay(order.startAt_o, 1 ))}.</p>
+                                                        <p>Dernière mise à jour il y a {getDays(order.createdAt, Date.now())} jour{getDays(order.createdAt, Date.now()) > 1 ? 's' : ''}.</p>
+                                                    </div>
+
+                                                    : order.state_o === 'Rejetée' ?
+                                                        <div>
+                                                            <p>État : <span className='text-danger'> {order.state_o}</span></p>
+                                                            <p>Veuillez <a href='#'> nous contacter</a> pour plus de détails.</p> 
+                                                        </div>
+
+                                                        : order.state_o === 'En cours' ?
+                                                            <div>
+                                                                <p>État : <span className='text-info'> {order.state_o}</span></p>
+                                                                <p>Il reste {getDays(Date.now(), order.endAt_o)} jours de location.</p>
+                                                            </div>
+
+                                                            : order.state_o === 'Terminée' ?
+                                                                <div>
+                                                                    <p>État : <span className='text-success'> {order.state_o} </span></p>
+                                                                    <p>Votre commande est terminée, veuillez nous retourner le drone selon les conditions de votre contrat.</p>
+                                                                </div>
+                                                                :
+                                                                <div>
+                                                                    <p>État : <span className='text-danger'> {order.state_o}</span></p>
+                                                                    <p>Un probleme est survenu, nous allons vous contacter dans les plus brefs délais.</p>
+                                                                </div>
+
                                         }
-                                        <p>Réservation du {formatDate(order.startAt_o)} au {formatDate(order.endAt_o)}</p>
+                                        <p>Date de la commande : {formatDate(order.createdAt)}.</p>
+                                        <p>Réservation du {formatDate(order.startAt_o)} au {formatDate(order.endAt_o)}.</p>
                                     </div>
                                 </div>
                             </li>
