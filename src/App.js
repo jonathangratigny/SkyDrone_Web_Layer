@@ -72,7 +72,7 @@ const App = () => {
               <Route path='/sign-in' exact element={<SignIn />}></Route>
               <Route path='/dashboard' exact element={<UserDashboard />}></Route>
               <Route path='/cart' exact element={<Cart />}></Route>
-              <Route path='/mesinfos' exact element={<UsersDetails />}></Route>
+              <Route path='/userdetails' exact element={<UsersDetails />}></Route>
               <Route path='/orders' exact element={<UserOrders />}></Route>
               <Route path='/updateuserdetails' exact element={<UpdateUsersDetails />}></Route>
               <Route path='/*' exact element={<ErrorSection />}></Route>

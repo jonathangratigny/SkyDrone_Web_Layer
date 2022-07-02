@@ -1,5 +1,5 @@
 .cart_recap {
-    width: clamp(300px, 30%, 100%);
+    width: clamp(350px, 30%, 100%);
 }
 
 .cart_container {

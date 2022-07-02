@@ -31,11 +31,11 @@ function Footer() {
                     </div>
                     <div className="col item social">
 						<Link className='social-icon-link facebook' to='/' target='_blank' aria-label='Facebook'><i className='fab fa-facebook-f'/></Link>
-						<Link className='social-icon-link facebook' to='/' target='_blank' aria-label='Facebook'><i className='fab fa-instagram'/></Link>
-						<Link className='social-icon-link facebook' to='/' target='_blank' aria-label='Facebook'><i className='fab fa-youtube'/></Link>
+						<Link className='social-icon-link instagram' to='/' target='_blank' aria-label='Instagram'><i className='fab fa-instagram'/></Link>
+						<Link className='social-icon-link youtube' to='/' target='_blank' aria-label='Youtube'><i className='fab fa-youtube'/></Link>
 					</div>
                 </div>
-                <p className="copyright">SKY DRONE © 2022</p>
+                <p className="copyright">SKY DRONE © {new Date().getFullYear()}</p>
             </div>
         </footer>
   );

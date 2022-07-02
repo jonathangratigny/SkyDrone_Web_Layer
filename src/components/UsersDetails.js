@@ -1,70 +1,149 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { baseUrl } from '../utils/fetchApi'
 import './UsersDetails.css'
-import Footer from './Footer';
 
-function UsersDetails () {
+function UsersDetails() {
     const [users, setUsers] = useState([])
-    const navigate = useNavigate()
-
     const auth = localStorage.getItem('user')
-    const authParsed = JSON.parse(auth);
+    const authParsed = JSON.parse(auth)
 
     useEffect(() => {
         const fetchData = async () => {
-            const data = await fetch(`${baseUrl}/users/${authParsed.user._id}`);
-            const json = await data.json();
-            setUsers(json)
+            const data = await fetch(`${baseUrl}/users/${authParsed.user._id}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${authParsed.token}`
+                }
+            })
+            const user = await data.json()
+            setUsers(user)
         }
         fetchData()
     }, [])
 
-    function deleteUser(){
-        var confirmDelete = window.confirm("Êtes-vous sûr de vouloir supprimer votre compte ?")
-        if(confirmDelete){
-            let result = fetch(`${baseUrl}/users/${authParsed.user._id}`, {
-                method:'DELETE',
-                headers:{
-                    'Content-Type':"application/json"
-                }
-            })
-            console.log(result);
-            localStorage.clear()
-            alert('Votre compte a bien été supprimé !')
-            navigate('/')
-        }
-    }
-
-    return(
+    return (
         <>
-            <div className='detailsUsers'>
-            <h1 className='titleServices'>mes informations personnelles</h1>
-                <div>
-                    <p>Votre nom : {authParsed.user.lastName_u}</p>
-                    <p>Votre prénom : {authParsed.user.firstName_u}</p>
-                </div>
-                <p>Votre adresse email : {authParsed.user.email}</p>
-                <p>Votre entreprise : {authParsed.user.company_u}</p>
-                <p>SIRET : {authParsed.user.siret_u}</p>
-                <p>Adresse de votre entreprise : {authParsed.user.address_u}</p>
-                <p>Votre téléphone : {authParsed.user.phone_u}</p>
+            <div className='detailsUsers '>
+                <h1 className='titleServices'>mes informations personnelles</h1>
 
-                <div className="submitSection">
+                <div className='container'>
+
+                    <div className='row mb-3 justify-content-center'>
+                        <label htmlFor="staticLastname" className="col-3 col-md-2 col-form-label">Nom</label>
+                        <div class="col-9 col-md-6">
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="staticLastname"
+                                placeholder={authParsed.user.lastName_u}
+                                name="lastName_u"
+                                disabled
+                            />
+                        </div>
+                    </div>
+
+                    <div className='row mb-3 justify-content-center'>
+                        <label htmlFor="staticFirstname" className="col-3 col-md-2 col-form-label">Prénom</label>
+                        <div className="col-9 col-md-6">
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="staticFirstname"
+                                placeholder={authParsed.user.firstName_u}
+                                name="firstName_u"
+                                disabled
+
+                            />
+                        </div>
+                    </div>
+
+
+                    <div className='row mb-3 justify-content-center'>
+                        <label htmlFor="staticEmail" className="col-3 col-md-2 col-form-label">Email</label>
+                        <div className="col-9 col-md-6">
+                            <input
+                                type="email"
+                                className="form-control"
+                                id="staticEmail"
+                                placeholder={authParsed.user.email}
+                                name="email"
+                                disabled
+                            />
+                        </div>
+                    </div>
+
+
+                    <div className='row mb-3 justify-content-center'>
+                        <label htmlFor="staticCompany" className="col-3 col-md-2 col-form-label">Entreprise</label>
+                        <div className="col-9 col-md-6">
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="staticCompany"
+                                placeholder={authParsed.user.company_u}
+                                name="company_u"
+                                disabled
+
+                            />
+                        </div>
+                    </div>
+
+                    <div className='row mb-3 justify-content-center'>
+                        <label htmlFor="staticCompany" className="col-3 col-md-2 col-form-label">Siret</label>
+                        <div className="col-9 col-md-6">
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="staticCompany"
+                                placeholder={authParsed.user.siret_u}
+                                name="siret_u"
+                                disabled
+
+                            />
+                        </div>
+                    </div>
+
+                    <div className='row mb-3 justify-content-center'>
+                        <label htmlFor="staticAddress" className="col-3 col-md-2 col-form-label">Adresse</label>
+                        <div className="col-9 col-md-6">
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="staticAddress"
+                                placeholder={authParsed.user.address_u}
+                                name="address_u"
+                                disabled
+
+                            />
+                        </div>
+                    </div>
+
+                    <div className='row mb-3 justify-content-center'>
+                        <label htmlFor="staticPhone" className="col-3 col-md-2 col-form-label">Téléphone</label>
+                        <div className="col-9 col-md-6">
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="staticPhone"
+                                placeholder={authParsed.user.phone_u}
+                                name="phone_u"
+                                disabled
+
+                            />
+                        </div>
+                    </div>
+                </div>
+                <div className="d-flex align-items-center justify-content-center">
                     <Link to='/updateuserdetails'>
-                    <button
-                        type="submit"
-                        className="submitBox">modifier mes informations
-                    </button>
+                        <button
+                            type="submit"
+                            className="submitBox">modifier mes informations
+                        </button>
                     </Link>
-                    <button
-                        onClick={deleteUser}
-                        type="submit"
-                        className="submitBoxDelete">supprimer mon compte
-                    </button>
                 </div>
             </div>
-        <Footer />
         </>
     )
 }

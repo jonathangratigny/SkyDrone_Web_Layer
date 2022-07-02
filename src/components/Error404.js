@@ -23,7 +23,6 @@ const ErrorSection = () => {
         <div className='gif'>
             <img src="images/drone404.jpg" alt="404error" width="500" height="264"></img>
         </div>
-        <Footer />
         </>
     )
 }

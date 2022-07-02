@@ -1,135 +1,193 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react'
 import { baseUrl } from '../utils/fetchApi'
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from 'react-router-dom'
 import './SignUpSection.css'
-import Footer from './Footer';
+
 
 const UpdateUsersDetails = () => {
-    const [formData, setFormData] = React.useState(
+
+    const navigate = useNavigate()
+    const auth = localStorage.getItem('user')
+    const authParsed = JSON.parse(auth)
+
+    //gere l'etat initial du formulaire
+    const [formData, setFormData] = useState(
         {
-            lastName_u: "",
-            firstName_u: "",
-            company_u: "",
-            phone_u: "",
-            address_u: "",
-            siret_u: "",
-            email: "",
-            key_r: "0"
+            email: authParsed.user.email,
+            firstName_u: authParsed.user.firstName_u,
+            lastName_u: authParsed.user.lastName_u,
+            company_u: authParsed.user.company_u,
+            phone_u: authParsed.user.phone_u,
+            address_u: authParsed.user.address_u,
+            siret_u: authParsed.user.siret_u,
         }
     )
 
-    console.log(formData);
-
-    function handleChange(event){
-        setFormData(prevFormData => {
-            return {
-                ...prevFormData,
-                [event.target.name]: event.target.value
-            }
-        })
+    //gere les changements d'etat du formulaire
+    function handleInputChange(event) {
+        const { name, value } = event.target
+        setFormData(prevState => ({
+            ...prevState,
+            [name]: value
+        }))
     }
 
-    const navigate = useNavigate()
+    //gere la soumission du formulaire
+    const handleSubmit = (event) => {
+        event.preventDefault()
+        const fetchData = async () => {
+            const data = await fetch(`${baseUrl}/users/${authParsed.user._id}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${authParsed.token}`
+                },
+                body: JSON.stringify(formData)
+            })
+            const userUpdate = await data.json()
 
-    const auth = localStorage.getItem('user')
-    const authParsed = JSON.parse(auth);
-    console.log(JSON.parse(auth))
+            //parse le localstorage pour modifier user
+            const user = JSON.parse(localStorage.getItem('user'))
+            user.user = userUpdate.user
 
-    function updateUserDetails(){
-        let result = fetch(`${baseUrl}/users/${authParsed.user._id}`, {
-            method:'PATCH',
-            body:JSON.stringify(formData),
-            headers:{
-                'Content-Type':"application/json"
-            }
-        })
-        
-        localStorage.setItem('user', auth)
-        alert('Vos informations ont été modifiées avec succès !')
-        navigate('/mesinfos')
-        console.log(result);
+            //ajoute le user et remet le token dans le localstorage
+            localStorage.setItem('user', JSON.stringify({ token: authParsed.token, user: userUpdate.user }))
+
+            //redirection
+            navigate('/dashboard')
+        }
+        fetchData()
     }
+
 
     return (
         <>
-            <h1 className="titleSignUp">Modifier mes informations</h1>
-                <form onSubmit={updateUserDetails}>
-                    <div className='inputLogin'>
-                    <input
-                        className="inputBox"
-                        name="lastName_u"
-                        type='text'
-                        onChange={handleChange}
-                        placeholder="NOM"
-                    />
-                    <input
-                        className="inputBox"
-                        name="firstName_u"
-                        type='text'
-                        value={formData.firstName_u}
-                        onChange={handleChange}
-                        placeholder="PRÉNOM"
-                    />
+            <h1 className="titleServices">Modifier mes informations</h1>
+            <form onSubmit={event => handleSubmit(event)}>
+                <div className='container'>
+
+                    <div className='row mb-3 justify-content-center'>
+                        <label htmlFor="staticLastname" className="col-3 col-md-2 col-form-label">Nom</label>
+                        <div class="col-9 col-md-6">
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="staticLastname"
+                                placeholder={authParsed.user.lastName_u}
+                                name="lastName_u"
+                                value={formData.lastName_u}
+                                onChange={event => handleInputChange(event)}
+                            />
+                        </div>
                     </div>
-                    <div className='inputLogin'>
-                    <input
-                        className="inputBox"
-                        name="company_u"
-                        type='text'
-                        value={authParsed.user.company_u}
-                        onChange={handleChange}
-                        placeholder="NOM ENTREPRISE"
-                    />
-                    <input
-                        className="inputBox"
-                        name="siret_u"
-                        type='text'
-                        value={authParsed.user.siret_u}
-                        onChange={handleChange}
-                        placeholder="SIRET"
-                    />
+
+                    <div className='row mb-3 justify-content-center'>
+                        <label htmlFor="staticFirstname" className="col-3 col-md-2 col-form-label">Prénom</label>
+                        <div className="col-9 col-md-6">
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="staticFirstname"
+                                placeholder={authParsed.user.firstName_u}
+                                name="firstName_u"
+                                value={formData.firstName_u}
+                                onChange={event => handleInputChange(event)}
+                            />
+                        </div>
                     </div>
-                    <div className='inputLogin'>
-                    <input
-                    className="inputBox"
-                        type='text'
-                        value={authParsed.user.address_u}
-                        name="address_u"
-                        onChange={handleChange}
-                        placeholder="ADRESSE ENTREPRISE"
-                    />
+
+
+                    <div className='row mb-3 justify-content-center'>
+                        <label htmlFor="staticEmail" className="col-3 col-md-2 col-form-label">Email</label>
+                        <div className="col-9 col-md-6">
+                            <input
+                                type="email"
+                                className="form-control"
+                                id="staticEmail"
+                                name="email"
+                                value={formData.email}
+                                onChange={event => handleInputChange(event)}
+                            />
+                        </div>
                     </div>
-                    <div className='inputLogin'>
-                    <input
-                        className="inputBox"
-                        name="phone_u"
-                        type='text'
-                        value={authParsed.user.phone_u}
-                        onChange={handleChange}
-                        placeholder="TÉLÉPHONE"
-                    />
-                    <input
-                        className="inputBox"
-                        name="email"
-                        type='text'
-                        value={authParsed.user.email}
-                        onChange={handleChange}
-                        placeholder="EMAIL"
-                    />
-                    <input
-                        className="inputBox"
-                        name="key_r"
-                        type='hidden'
-                        value={authParsed.user.key_r}
-                        onChange={handleChange}
-                    />
+
+
+                    <div className='row mb-3 justify-content-center'>
+                        <label htmlFor="staticCompany" className="col-3 col-md-2 col-form-label">Entreprise</label>
+                        <div className="col-9 col-md-6">
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="staticCompany"
+                                placeholder={authParsed.user.company_u}
+                                name="company_u"
+                                value={formData.company_u}
+                                onChange={event => handleInputChange(event)}
+                            />
+                        </div>
                     </div>
-                <div className="submitSection">
-                    <a href='/mesinfos'><button type="button" className="submitBoxCancel">annuler</button></a>
-                    <button onClick={updateUserDetails} type="submit" className="submitBox">sauvgarder</button>
+
+                    <div className='row mb-3 justify-content-center'>
+                        <label htmlFor="staticCompany" className="col-3 col-md-2 col-form-label">Siret</label>
+                        <div className="col-9 col-md-6">
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="staticCompany"
+                                placeholder={authParsed.user.siret_u}
+                                name="siret_u"
+                                value={formData.siret_u}
+                                onChange={event => handleInputChange(event)}
+                            />
+                        </div>
+                    </div>
+
+                    <div className='row mb-3 justify-content-center'>
+                        <label htmlFor="staticAddress" className="col-3 col-md-2 col-form-label">Adresse</label>
+                        <div className="col-9 col-md-6">
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="staticAddress"
+                                placeholder={authParsed.user.address_u}
+                                name="address_u"
+                                value={formData.address_u}
+                                onChange={event => handleInputChange(event)}
+                            />
+                        </div>
+                    </div>
+
+                    <div className='row mb-3 justify-content-center'>
+                        <label htmlFor="staticPhone" className="col-3 col-md-2 col-form-label">Téléphone</label>
+                        <div className="col-9 col-md-6">
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="staticPhone"
+                                placeholder={authParsed.user.phone_u}
+                                name="phone_u"
+                                value={formData.phone_u}
+                                onChange={event => handleInputChange(event)}
+                            />
+                        </div>
+                    </div>
+                </div>
+
+
+                <div className="d-flex justify-content-center align-items-center">
+                    <a
+                        type="button"
+                        className="submitBoxCancel"
+                        href='/userdetails'
+                    >Retour
+                    </a>
+                    <button
+                        onClick={handleInputChange}
+                        type="submit"
+                        className="submitBox">sauvgarder
+                    </button>
                 </div>
             </form>
-            <Footer />
         </>
     )
 }

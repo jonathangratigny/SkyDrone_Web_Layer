@@ -66,7 +66,6 @@ const SignInSection = () => {
                 </div>
                 </div>
         </div>
-        <Footer />
         </>
     )
 }

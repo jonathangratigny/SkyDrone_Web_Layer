@@ -18,16 +18,16 @@
 }
 
 form{
-    display: flex;
+    /* display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center; 
     background-color: #0000000f;
     margin-bottom: 3%;
     padding-top: 2%;
     padding-bottom: 2%;
-    max-width: 50%;
-    margin-left: 25%;
-    border-radius: 15px;
+    max-width: 50%; 
+    margin-left: 25%; 
+    border-radius: 15px; */
 }
 
 .test{
@@ -43,7 +43,7 @@ form{
     justify-content: center;
     margin: 15px;
     padding: 10px;
-    width: 300px;
+    width: clamp(100px , 200px, 400px);
     border: 1px solid skyblue;
     border-color: whitesmoke;
     text-align: center;
@@ -66,15 +66,15 @@ form{
 }
 
 .submitSection{
-    display: flex;
-    justify-content: center;
+    /* display: flex;
+    justify-content: center; */
 }
 
 .submitBox{
     display: block;
     margin: 15px;
     padding: 10px;
-    width: 300px;
+    width: clamp(100px , 200px, 400px);
     border: 1px solid #3caae9;
     border-radius: 25px;
     color: whitesmoke;
@@ -96,7 +96,7 @@ form{
     display: block;
     margin: 15px;
     padding: 10px;
-    width: 300px;
+    width: clamp(100px , 200px, 400px);
     border: 1px solid #e93c3c;
     border-radius: 25px;
     color: whitesmoke;
@@ -118,7 +118,7 @@ form{
     display: block;
     margin: 15px;
     padding: 10px;
-    width: 300px;
+    width: clamp(100px , 200px, 400px);
     border: 1px solid #9c9c9c;
     border-radius: 25px;
     color: whitesmoke;
@@ -160,9 +160,5 @@ form{
 
     .inputBox{
         border-radius: 25px;
-    }
-
-    .submitBox{
-     margin-bottom: 30%;
     }
 }
