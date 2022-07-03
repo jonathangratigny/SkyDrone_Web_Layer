@@ -16,3 +16,22 @@ export const getDaysBetweenTwoDates = (startDate, endDate) => {
 export const transformDateToNumber = (date) => {
     return new Date(date).getTime()
 }
+
+  //calcul du total de la location
+export const totalPrice = (items) => {
+    let total = 0
+    let totalDays = getDaysBetweenTwoDates(items[0].startDate, items[0].endDate)
+    totalDays <= 0 ?
+        totalDays = 1 : totalDays = getDaysBetweenTwoDates(items[0].startDate, items[0].endDate)
+
+    for (let key in items) {
+
+        total += items[key].price
+    }
+    return total * totalDays
+}
+
+//frais logistique de 100
+export const logistique = () => {
+    return 100
+}

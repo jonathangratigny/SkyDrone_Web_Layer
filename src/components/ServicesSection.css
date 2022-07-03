@@ -20,6 +20,15 @@
     text-align: center;
     letter-spacing: 1px;
     text-transform: uppercase;
+    
+}
+
+.detailsUsers {
+  background: url('../../public/images/img-sign3.jpg') center center/cover no-repeat;
+  height: 80vh;
+  box-shadow: inset 0 0 0 1000px rgb(0, 0, 0, 0.2);
+  object-fit: contain;
+  /* background-color: whitesmoke; */
 }
 
 .hola{

@@ -32,7 +32,7 @@ const UserDashboard = () => {
                     <Link to="/orders" className='hola mx-2'>
                         Mes réservations
                     </Link>
-                    <Link to="/history" className='hola mx-2'>
+                    <Link to="/ordershistory" className='hola mx-2'>
                         Mon historique
                     </Link>
                 </div>

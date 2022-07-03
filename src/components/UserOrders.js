@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { baseUrl } from '../utils/fetchApi'
 import './UsersDetails.css'
 import { formatDate } from './helper'
-import Footer from './Footer'
+
 
 function UserOrders() {
 

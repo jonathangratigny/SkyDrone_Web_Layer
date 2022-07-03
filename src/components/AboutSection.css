@@ -1,3 +1,8 @@
+* {
+    box-sizing: border-box;
+    
+}
+
 h1{
     text-align: center;
 }
@@ -36,13 +41,13 @@ h1{
     display: flex;
     justify-content: center;
 	width: 100%;
-    margin: 2%;
+    margin: 2% 0%;
 }
 
 .imgAbout2{
     display: flex;
     justify-content: space-around;
-    margin: 2%;
+    margin: 2% 0%;
 }
 
 .imgBio{

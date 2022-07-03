@@ -15,6 +15,7 @@ import { ParallaxProvider } from 'react-scroll-parallax';
 import ErrorSection from './components/Error404';
 import UsersDetails from './components/UsersDetails';
 import UserOrders from './components/UserOrders';
+import UserOrdersHistory from './components/UserOrdersHistory';
 import UpdateUsersDetails from './components/UpdateUsersDetails';
 import { ModalProvider } from 'styled-react-modal'
 
@@ -74,6 +75,7 @@ const App = () => {
               <Route path='/cart' exact element={<Cart />}></Route>
               <Route path='/userdetails' exact element={<UsersDetails />}></Route>
               <Route path='/orders' exact element={<UserOrders />}></Route>
+              <Route path='/ordershistory' exact element={<UserOrdersHistory />}></Route>
               <Route path='/updateuserdetails' exact element={<UpdateUsersDetails />}></Route>
               <Route path='/*' exact element={<ErrorSection />}></Route>
             </Routes>

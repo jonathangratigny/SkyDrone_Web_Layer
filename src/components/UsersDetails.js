@@ -25,14 +25,14 @@ function UsersDetails() {
 
     return (
         <>
-            <div className='detailsUsers '>
-                <h1 className='titleServices'>mes informations personnelles</h1>
+            <div className='detailsUsers text-white'>
+                <h1 className='titleServices text-white my-5'>mes informations personnelles</h1>
 
                 <div className='container'>
 
                     <div className='row mb-3 justify-content-center'>
                         <label htmlFor="staticLastname" className="col-3 col-md-2 col-form-label">Nom</label>
-                        <div class="col-9 col-md-6">
+                        <div className="col-9 col-md-6">
                             <input
                                 type="text"
                                 className="form-control"
