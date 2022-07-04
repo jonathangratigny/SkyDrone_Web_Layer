@@ -3,6 +3,8 @@ import '../App.css'
 import './SignUpSection.css'
 import { baseUrl } from "../utils/fetchApi"
 import { useNavigate } from "react-router-dom"
+import PasswordChecklist from "react-password-checklist"
+
 
 const SignUpSection = () => {
     // const regexMail = /^[a-z0-9.-]+[@]{1}[a-z0-9.-]+[.]{1}[a-z]{2,4}$/
@@ -13,12 +15,12 @@ const SignUpSection = () => {
     const [address_u, setAdress] = useState('')
     const [siret_u, setSiret] = useState('')
     const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [key_r, setKey_r] = useState('0')
+    const [password, setPassword] = useState("")
+    const [passwordAgain, setPasswordAgain] = useState("")
+    const [key_r, setKey_r] = useState('3')
     const navigate = useNavigate()
 
     const collectData = async () => {
-        console.log(lastName_u, firstName_u, company_u, phone_u, address_u, siret_u, email, password, key_r)
         let result = await fetch(`${baseUrl}/signup`, {
             method: 'post',
             body: JSON.stringify(
@@ -50,11 +52,13 @@ const SignUpSection = () => {
         }
     }
 
+
+
     return (
         <>
-            <div className="signup-container">
-                <div className="test">
-                    <h1 className="titleSignUp">Formulaire d'inscription</h1>
+            <div className="signup-container ">
+                <h1 className="titleSignUp">N'y allons pas par 4 chemins</h1>
+                <div className="background d-flex justify-content-center">
                     <div className="inputLogin">
                         <input
                             className="inputBox"
@@ -80,7 +84,7 @@ const SignUpSection = () => {
                             type='text'
                             value={company_u}
                             onChange={(e) => setCompany(e.target.value)}
-                            placeholder="Nom de votre entreprise"
+                            placeholder="Raison sociale de l'entreprise"
                         />
                         <input
                             className="inputBox"
@@ -121,29 +125,42 @@ const SignUpSection = () => {
                     </div>
                     <div className="inputLogin">
                         <input
-                            className="inputBox"
-                            name="password"
-                            type='password'
+                            type="password"
                             value={password}
-                            onChange={(e) => setPassword(e.target.value)}
+                            onChange={e => setPassword(e.target.value)}
+                            className="inputBox text-center"
                             placeholder="Mot de passe"
                         />
                         <input
+                            type="password"
+                            onChange={e => setPasswordAgain(e.target.value)}
                             className="inputBox"
-                            name="key_r"
-                            type='hidden'
-                            value={key_r}
-                            onChange={(e) => setKey_r(e.target.value)}
-                            placeholder=""
+                            placeholder="Confirmation mot de passe"
                         />
+
                     </div>
-                    <div className="submitSection">
-                        <button
-                            type="button"
-                            onClick={collectData}
-                            className="submitBox">inscription
-                        </button>
-                    </div>
+                </div>
+                <PasswordChecklist
+                    className="text-white d-flex flex-column align-items-center fs-5 mt-4"
+                    rules={["minLength", "specialChar", "number", "capital", "match"]}
+                    minLength={8}
+                    value={password}
+                    valueAgain={passwordAgain}
+                    onChange={(isValid) => { }}
+                    messages={{
+                        minLength: "Longueur de 8 caractères minimum.",
+                        specialChar: "Un caractère spécial.",
+                        number: "Un chiffre.",
+                        capital: "Une lettre majuscule.",
+                        match: "Match parnis les deux ;)"
+                    }}
+                />
+                <div className="d-flex justify-content-center">
+                    <button
+                        type="button"
+                        onClick={collectData}
+                        className="submitBox">pret à voler
+                    </button>
                 </div>
             </div>
         </>

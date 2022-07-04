@@ -65,8 +65,9 @@ const Navbar = () => {
                       <Link className='nav-links dropdown-toggle' to='/dashboard' id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Bonjour, {capitalize(authParsed.user.firstName_u ? authParsed.user.firstName_u : null)}</Link>
                       <ul className="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                         <li><a href='/Dashboard' className='dropdown-item nav-links'>Mon compte</a></li>
-                        <li><a href='/orders' className='dropdown-item nav-links'>Mes commandes</a></li>
-                        <li><a href='/userdetails' className='dropdown-item nav-links'>Mes informations</a></li>
+                        <li><a href='/orders' className='dropdown-item nav-links'>Mes commandes en cours</a></li>
+                        <li><a href='/ordershistory' className='dropdown-item nav-links'>Historique des commandes</a></li>
+                        <li><a href='/userdetails' className='dropdown-item nav-links'>Gérer mes informations</a></li>
                         <li><a href='/' onClick={logOut} className='dropdown-item nav-links'>Déconnexion</a></li>
                       </ul>
                     </li>

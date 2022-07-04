@@ -37,7 +37,7 @@ const SignInSection = () => {
         <>
         <div className="signup-container">
             <div className="test">
-            <h1 className="titleSignUp">Connectez-vous à votre compte</h1>
+            <h1 className="titleSignUp">S'identifier</h1>
                 <div className="inputLoginTest">
                     <input
                         className="inputBox"
@@ -56,7 +56,7 @@ const SignInSection = () => {
                         placeholder="MOT DE PASSE"
                     />
                 </div>
-                <div className="submitSection">
+                <div className="d-flex justify-content-center pt-5">
                     <button
                         type="button"
                         onClick={handleLogin}

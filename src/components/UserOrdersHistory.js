@@ -1,4 +1,4 @@
-/* eslint-disable no-lone-blocks */
+import './ProductPage.css'
 import React, { useState, useEffect } from 'react'
 import { baseUrl } from '../utils/fetchApi'
 import './UsersDetails.css'
@@ -74,8 +74,24 @@ function UserOrdersHistory() {
                 </div>
                 <h1 className='titleDrone'>Historique des réservations terminées</h1>
             </div>
-                <div className="container">
-                <div><p>{orders.message}</p></div>
+            
+                <div className="cards_container">
+                    <div className="cardProduct"  >
+                        <div className="card__item__info">
+                            <h5 className="cards__item__text d-flex">Vous n'avez pas encore de commande<span className='ms-auto'>hdwefj</span></h5>
+                            <hr></hr>
+                            <p className="cards__item__desc"></p>
+                            <footer className='d-flex align-items-center'>
+                                <span className="cards__item__price">€/jour</span>
+                            </footer>
+
+                            <div className="total mt-3">
+                                <p><span className='fw-bold'>test</span></p>
+                                <p><span className='fw-bold'>test</span></p>
+                                <p><span className='fw-bold'>Prix Total </span></p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </>
         )
