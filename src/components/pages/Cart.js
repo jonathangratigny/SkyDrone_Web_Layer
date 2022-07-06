@@ -34,6 +34,8 @@ function Cart() {
         cartTotal,
         totalItems
     } = useCart()
+    
+    const [isOpen, setIsOpen] = useState(false)
 
     const displayDateStart = (key) => {
         return items[key].startDate ? new Date(items[key].startDate).toLocaleDateString() : null
@@ -41,20 +43,28 @@ function Cart() {
     const displayDateEnd = (key) => {
         return items[key].endDate ? new Date(items[key].endDate).toLocaleDateString() : null
     }
-
     const isConnected = () => {
         const auth = localStorage.getItem('user')
         return auth ? true : false
     }
+    
+    function toggleModal(e) {
+        setIsOpen(!isOpen)
+    }
+    
+    //frais logistique de 100
+    const logistique = () => {
+        return 100
+    }
 
-
-    //calcul du total de la location
+    //calcul du nombre de jours entiers au total de la location
+    //ex. du 01/01/2022 au 02/01/2022 => 2 jours
     const totalPrice = () => {
         let total = 0
         let totalDays = getDaysBetweenTwoDates(items[0].startDate, items[0].endDate)
-        totalDays <= 0 ?
-            totalDays = 1 : totalDays = getDaysBetweenTwoDates(items[0].startDate, items[0].endDate)
-
+        if(totalDays <= 0) {
+            totalDays = 1 
+        }
         for (let key in items) {
 
             total += items[key].price
@@ -62,10 +72,6 @@ function Cart() {
         return total * totalDays
     }
 
-    //frais logistique de 100
-    const logistique = () => {
-        return 100
-    }
 
     const handleOrder = () => {
         items.forEach(item => {
@@ -100,11 +106,7 @@ function Cart() {
         })
     }
 
-    const [isOpen, setIsOpen] = useState(false)
 
-    function toggleModal(e) {
-        setIsOpen(!isOpen)
-    }
 
 
     // si le user est connecté, on affiche le bouton pour commander
@@ -145,7 +147,9 @@ function Cart() {
                                     <hr></hr>
                                     <ul className='list-group'>
                                         {items.map((item, key) => (
+                                            
                                             <li key={item.id} className="list-group-item d-flex p-3 flex-wrap">
+                                                {console.log(item)}
                                                 <div className="item_image">
                                                     <img src={`./images/${item.id}.png`} alt='drone' className='cart_item__img w-100'></img>
                                                 </div>
@@ -177,7 +181,7 @@ function Cart() {
                                     <hr></hr>
 
                                     <p className="cart_total">Transport et préparation (forfait): {logistique()} €</p>
-                                    <p className="cart_total">Nombre de jours: {getDaysBetweenTwoDates(items[0].startDate, items[0].endDate) <= 0 ? 1 : getDaysBetweenTwoDates(items[0].startDate, items[0].endDate)}</p>
+                                    <p className="cart_total">Nombre de jours: {getDaysBetweenTwoDates(items[0].startDate, items[0].endDate)}</p>
                                     <p className="cart_total">Location: {totalPrice()} €</p>
                                     <p className="cart_total">Montant Total: {totalPrice() + logistique()} €</p>
                                     <button className='btn btn-dark w-100' type="button" onClick={checkout}>Valider mon panier</button>

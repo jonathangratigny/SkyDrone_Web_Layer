@@ -43,8 +43,36 @@ const Drones = () => {
                 {drones.length === 0 ? (
                     <div className='d-flex justify-content-center mt-5'>
                         <ContentLoader
-                            width={200}
-                            height={350}
+                            width={400}
+                            height={650}
+                            backgroundColor="#f3f3f3"
+                            foregroundColor="#ecebeb"
+                            {...drones}
+                        >
+                            <circle cx="77" cy="63" r="52" />
+                            <circle cx="118" cy="98" r="25" />
+                            <rect x="30" y="134" rx="0" ry="0" width="113" height="14" />
+                            <rect x="46" y="154" rx="0" ry="0" width="82" height="13" />
+                            <rect x="28" y="177" rx="0" ry="0" width="123" height="78" />
+
+                        </ContentLoader>
+                        <ContentLoader
+                            width={400}
+                            height={650}
+                            backgroundColor="#f3f3f3"
+                            foregroundColor="#ecebeb"
+                            {...drones}
+                        >
+                            <circle cx="77" cy="63" r="52" />
+                            <circle cx="118" cy="98" r="25" />
+                            <rect x="30" y="134" rx="0" ry="0" width="113" height="14" />
+                            <rect x="46" y="154" rx="0" ry="0" width="82" height="13" />
+                            <rect x="28" y="177" rx="0" ry="0" width="123" height="78" />
+
+                        </ContentLoader>
+                        <ContentLoader
+                            width={400}
+                            height={650}
                             backgroundColor="#f3f3f3"
                             foregroundColor="#ecebeb"
                             {...drones}

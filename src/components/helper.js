@@ -3,13 +3,13 @@ export const formatDate = (date) => {
     return new Date(date).toLocaleDateString()
 }
 
-//calcule le nombre de jours entre deux dates, retourne un entier
+//calcule le nombre de jours entiers entre deux dates, retourne un entier
 export const getDaysBetweenTwoDates = (startDate, endDate) => {
     const start = new Date(startDate)
     const end = new Date(endDate)
-    const diffTime = Math.abs(end - start);
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    return diffDays
+    const diffTime = Math.abs(end - start)
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
+    return diffDays + 1
 }
 
 //retourne la date en nombre entier
@@ -17,7 +17,7 @@ export const transformDateToNumber = (date) => {
     return new Date(date).getTime()
 }
 
-  //calcul du total de la location
+//calcul du total de la location
 export const totalPrice = (items) => {
     let total = 0
     let totalDays = getDaysBetweenTwoDates(items[0].startDate, items[0].endDate)
