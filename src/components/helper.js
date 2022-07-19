@@ -35,3 +35,19 @@ export const totalPrice = (items) => {
 export const logistique = () => {
     return 100
 }
+
+// calcule le nombre de jours
+export const getDays = (startDate, endDate) => {
+    const start = new Date(startDate)
+    const end = new Date(endDate)
+    const diffTime = Math.abs(end - start)
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
+    return diffDays
+}
+
+   //retire un jour de la date
+ export function removeDay(date, days) {
+    var result = new Date(date)
+    result.setDate(result.getDate() - days)
+    return result
+}

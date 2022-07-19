@@ -1,5 +1,6 @@
 .cart_recap {
     width: clamp(350px, 30%, 100%);
+    /* background-color: aqua; */
 }
 
 .cart_container {
@@ -7,6 +8,9 @@
 }
 
 .item_image {
-    width: 150px;
-    margin-right: 1rem;
+    align-items: center;
+    justify-content: center;
+    width: clamp(100px, 30%, 100%);
+    height: clamp(100px, 30%, 100%);
+    margin: 0.4rem 1rem 1rem 0;
 }

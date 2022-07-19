@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import ProductPage from './ProductPage'
-import Footer from "./Footer"
 import { baseUrl } from '../utils/fetchApi'
 
 const Drone = () => {

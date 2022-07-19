@@ -44,12 +44,12 @@
     margin: 1rem;
     padding: 1rem;
     border-radius: 0.5rem;
-    background-color: tomato;
+    /* background-color: tomato; */
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
 }
 .card__item__info {
     width: 80%;
-    background-color: aqua;
+    background-color: rgb(221, 216, 208);
     padding: 1rem;
     border-radius: 0.5rem;
 }

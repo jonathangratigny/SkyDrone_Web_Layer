@@ -34,8 +34,15 @@ function Cart() {
         cartTotal,
         totalItems
     } = useCart()
+
+    const [totalDays, setTotalDays] = useState(0)
     
     const [isOpen, setIsOpen] = useState(false)
+    
+    const isConnected = () => {
+        const auth = localStorage.getItem('user')
+        return auth ? true : false
+    }
 
     const displayDateStart = (key) => {
         return items[key].startDate ? new Date(items[key].startDate).toLocaleDateString() : null
@@ -43,15 +50,11 @@ function Cart() {
     const displayDateEnd = (key) => {
         return items[key].endDate ? new Date(items[key].endDate).toLocaleDateString() : null
     }
-    const isConnected = () => {
-        const auth = localStorage.getItem('user')
-        return auth ? true : false
-    }
-    
+
     function toggleModal(e) {
         setIsOpen(!isOpen)
     }
-    
+
     //frais logistique de 100
     const logistique = () => {
         return 100
@@ -61,15 +64,19 @@ function Cart() {
     //ex. du 01/01/2022 au 02/01/2022 => 2 jours
     const totalPrice = () => {
         let total = 0
-        let totalDays = getDaysBetweenTwoDates(items[0].startDate, items[0].endDate)
-        if(totalDays <= 0) {
-            totalDays = 1 
+        let totalDays = 0
+        if(items.length > 0) {
+        totalDays = getDaysBetweenTwoDates(items[0].startDate, items[0].endDate)
+        if (totalDays <= 0) {
+            totalDays = 1
         }
         for (let key in items) {
-
             total += items[key].price
         }
         return total * totalDays
+        } else {
+            return 0
+        }
     }
 
 
@@ -106,8 +113,8 @@ function Cart() {
         })
     }
 
-
-
+    let totalTransport = logistique() * items.length
+    let totalAmount = totalPrice() + logistique() * (items.length)
 
     // si le user est connecté, on affiche le bouton pour commander
     const checkout = () => {
@@ -117,6 +124,15 @@ function Cart() {
             toggleModal()
         }
     }
+    
+    useEffect(() => {
+        let totalDays = 0
+        items.forEach(item => {
+            totalDays += getDaysBetweenTwoDates(item.startDate, item.endDate)
+        })
+        setTotalDays(totalDays)
+    }
+        , [items])
 
     return (
         <>
@@ -136,31 +152,34 @@ function Cart() {
                             <div className='fs-3 mt-4 d-flex justify-content-center'>
                                 <div>Retourner au <a href='/products' className='text-dark '><u> catalogue</u></a></div>
                                 <div className='mx-2'><a href='/' className='text-dark'> où à <u>l'accueil</u></a></div>
-
                             </div>
                         </>
                         :
                         (
                             <div className="cart_container d-flex ">
                                 <div className="cart_items flex-grow-1 p-3 ">
-                                    <h4 className="cart_title">Votre panier</h4>
+                                    <h4 className="cart_title fs-3">Votre panier</h4>
                                     <hr></hr>
                                     <ul className='list-group'>
                                         {items.map((item, key) => (
-                                            
-                                            <li key={item.id} className="list-group-item d-flex p-3 flex-wrap">
-                                                {console.log(item)}
-                                                <div className="item_image">
-                                                    <img src={`./images/${item.id}.png`} alt='drone' className='cart_item__img w-100'></img>
-                                                </div>
+
+                                            <li key={item.id} className="list-group-item d-flex p-3 flex-wrap ">
+                                                <picture className='item_image '>
+                                                <Link to={"/products/" + item.id}>
+                                                    <img src={`./images/${item.id}.png`} alt='drone' className='w-100'></img>
+                                                </Link>
+                                                </picture>
                                                 <div className="item_details flex-grow-1 d-flex flex-column">
-                                                    <div className="item_desc d-flex justify-content-between mb-2 ">
-                                                        <div className="item_title text-uppercase">{item.name_d}</div>
-                                                        <div>Du {displayDateStart(key)} au {displayDateEnd(key)}</div>
+                                                    <div className="item_desc d-flex mb-2 ">
+                                                        <div className="item_title text-uppercase fs-4 fw-bolder">{item.name_d}</div>
+                                                    </div>
+                                                    <div className="item_desc d-flex mb-2 ">
+                                                        <div>Du {displayDateStart(key)} au {displayDateEnd(key)} inclus soit un total de <span className='text-decoration-underline'>{getDaysBetweenTwoDates(item.startDate, item.endDate)} jours.</span></div>
+                                                    </div>
+                                                    <div className="item_desc d-flex mb-2 ">
                                                         <div className="item_price">{item.price}€/jours</div>
                                                     </div>
                                                     <div className='d-flex flex-grow-1 justify-content-between align-items-end'>
-
                                                         <div className="item_remove">
                                                             <Link to={"/products/" + item.id}>
                                                                 <button className="btn btn-outline-primary">Modifier la date</button>
@@ -177,14 +196,20 @@ function Cart() {
                                     </ul>
                                 </div>
                                 <div className="cart_recap p-3">
-                                    <h4 className="cart_title">Récapitulatif</h4>
+                                    <h4 className="cart_title fs-3">Récapitulatif</h4>
                                     <hr></hr>
 
-                                    <p className="cart_total">Transport et préparation (forfait): {logistique()} €</p>
-                                    <p className="cart_total">Nombre de jours: {getDaysBetweenTwoDates(items[0].startDate, items[0].endDate)}</p>
-                                    <p className="cart_total">Location: {totalPrice()} €</p>
-                                    <p className="cart_total">Montant Total: {totalPrice() + logistique()} €</p>
-                                    <button className='btn btn-dark w-100' type="button" onClick={checkout}>Valider mon panier</button>
+                                    <p className="cart_total">Transport et préparation (forfait): {totalTransport ? totalTransport : null} €</p>
+                                    <p className="cart_total">Nombre de jours: {totalDays ? totalDays : null}</p>
+                                    <p className="cart_total">Location: {totalPrice() ? totalPrice() : null} €</p>
+                                    <p className="cart_total">Montant Total: {totalAmount ? totalAmount : null} €</p>
+                                    {totalAmount ?
+                                        <div className="cart_total">
+                                            <button className="btn btn-dark w-100" onClick={checkout}>Commander</button>
+                                        </div>
+                                        :
+                                        null
+                                    }
                                 </div>
                             </div>
                         )}
@@ -193,7 +218,7 @@ function Cart() {
                 isOpen={isOpen}
                 onBackgroundClick={toggleModal}
                 onEscapeKeydown={toggleModal}>
-                <div className='logo text-center'>Pour valider votre commande, choisissez une des deux options</div>
+                <div className='logo text-center'>Vous devez être identifié :</div>
                 <Link className='hiddenbtn' to='/sign-in'><button className='myBtn'>CONNEXION</button></Link>
                 <Link className='hiddenbtn' to='/sign-up'><button className='btnSignUp'>INSCRIPTION</button></Link>
             </StyledModal>

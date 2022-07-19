@@ -23,6 +23,9 @@ const Navbar = () => {
       setButton(true)
     }
   }
+
+console.log(state.auth)
+
   window.addEventListener('resize', showButton)
   const logOut = () => {
     localStorage.clear()
@@ -83,6 +86,7 @@ const Navbar = () => {
                 <>
                   <li><Link className='hiddenbtn' to='/sign-up'><button className='btnSignUp'>Inscription</button></Link></li>
                   <li><Link className='hiddenbtn' to='/sign-in'><button className='myBtn'>Connexion</button></Link></li>
+                  
                 </>
             }
           </ul>

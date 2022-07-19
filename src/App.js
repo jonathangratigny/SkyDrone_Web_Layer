@@ -21,7 +21,7 @@ import { ModalProvider } from 'styled-react-modal'
 
 const isConnected = () => { // initialise l'état de la connexion
   const auth = localStorage.getItem('user')
-  if (auth !== null && auth !== undefined) {
+  if (auth && !auth.status === 'Echec') {
       return true
   } else {
       return false
@@ -39,7 +39,7 @@ const GlobalStateProvider = ({ children }) => {
   const [state, dispatch] = React.useReducer(
     (state, newValue) => ({ ...state, ...newValue }),
     globalState
-  )
+    )
   return (
     <GlobalStateContext.Provider value={state}>
       <DispatchStateContext.Provider value={dispatch}>

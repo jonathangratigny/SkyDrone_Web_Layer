@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import DroneCard from './DroneCard'
 import { Link } from 'react-router-dom'
-import Footer from './Footer'
 import { baseUrl } from '../utils/fetchApi'
 import { useParallax } from 'react-scroll-parallax'
 import ContentLoader from 'react-content-loader'
@@ -92,7 +91,7 @@ const Drones = () => {
                             <li className="cards__container" key={index}>
 
                                 <Link to={drone._id}>
-                                    <DroneCard drone={drone} ></DroneCard>
+                                    <DroneCard drone={drone} />
                                 </Link>
 
                             </li>

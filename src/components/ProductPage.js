@@ -51,6 +51,7 @@ const ProductPage = ({ drone }) => {
 			color: '#FFE53B'
 		},
 	})
+	
 	useEffect(() => {
 		items.forEach(item => {
 			if (item._id === drone._id) {

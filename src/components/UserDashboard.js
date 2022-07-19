@@ -23,9 +23,9 @@ const UserDashboard = () => {
                 </div>
                 <h1 className='titleDrone'>Mon compte</h1>
             </div>
-            <div className="container mt-3">
+            <div className="container mt-3 dashboard-main">
                 <h2 className='text-center mt-3'>Bienvenue {authParsed.user.firstName_u} {authParsed.user.lastName_u}</h2>
-                <div className='d-flex flex-column mt-3 align-items-center flex-lg-row justify-content-center'>
+                <div className='dashboard-options d-flex flex-column align-items-center flex-lg-row justify-content-center'>
                     <Link to="/userdetails" className='hola mx-2'>
                         Mes informations
                     </Link>
@@ -35,9 +35,6 @@ const UserDashboard = () => {
                     <Link to="/ordershistory" className='hola mx-2'>
                         Mon historique
                     </Link>
-                </div>
-                <div className='my-3 text-center'>
-                    {auth ? <Link className='btnSignUp ' onClick={logOut} to='/'>DÉCONNEXION</Link> : ''}
                 </div>
             </div>
         </>

@@ -116,6 +116,8 @@
     font-size: 18px;
     line-height: 25px;
     text-transform: uppercase;
+    font-weight: 700;
+    justify-content: center;
   }
 
   .cards__item__desc{
