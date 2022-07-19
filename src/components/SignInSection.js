@@ -4,6 +4,8 @@ import './SignUpSection.css'
 import { baseUrl } from "../utils/fetchApi"
 import { useNavigate, useParams } from "react-router-dom"
 import { useGlobalState } from '../App'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const SignInSection = () => {
     const [email, setEmail] = useState('')
@@ -105,6 +107,7 @@ const SignInSection = () => {
                     </div>
                 </div>
             </div>
+            <ToastContainer />
         </>
     )
 }

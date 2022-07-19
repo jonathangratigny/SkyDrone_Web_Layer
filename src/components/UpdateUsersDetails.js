@@ -66,7 +66,7 @@ const UpdateUsersDetails = () => {
             <form onSubmit={event => handleSubmit(event)}>
                 <div className='container'>
 
-                    <div className='row mb-3 justify-content-center'>
+                    <div className='row mb-3 justify-content-center fs-5'>
                         <label htmlFor="staticLastname" className="col-3 col-md-2 col-form-label">Nom</label>
                         <div className="col-9 col-md-6">
                             <input
@@ -81,7 +81,7 @@ const UpdateUsersDetails = () => {
                         </div>
                     </div>
 
-                    <div className='row mb-3 justify-content-center'>
+                    <div className='row mb-3 justify-content-center fs-5'>
                         <label htmlFor="staticFirstname" className="col-3 col-md-2 col-form-label">Prénom</label>
                         <div className="col-9 col-md-6">
                             <input
@@ -97,7 +97,7 @@ const UpdateUsersDetails = () => {
                     </div>
 
 
-                    <div className='row mb-3 justify-content-center'>
+                    <div className='row mb-3 justify-content-center fs-5'>
                         <label htmlFor="staticEmail" className="col-3 col-md-2 col-form-label">Email</label>
                         <div className="col-9 col-md-6">
                             <input
@@ -112,7 +112,7 @@ const UpdateUsersDetails = () => {
                     </div>
 
 
-                    <div className='row mb-3 justify-content-center'>
+                    <div className='row mb-3 justify-content-center fs-5'>
                         <label htmlFor="staticCompany" className="col-3 col-md-2 col-form-label">Entreprise</label>
                         <div className="col-9 col-md-6">
                             <input
@@ -127,7 +127,7 @@ const UpdateUsersDetails = () => {
                         </div>
                     </div>
 
-                    <div className='row mb-3 justify-content-center'>
+                    <div className='row mb-3 justify-content-center fs-5'>
                         <label htmlFor="staticCompany" className="col-3 col-md-2 col-form-label">Siret</label>
                         <div className="col-9 col-md-6">
                             <input
@@ -142,7 +142,7 @@ const UpdateUsersDetails = () => {
                         </div>
                     </div>
 
-                    <div className='row mb-3 justify-content-center'>
+                    <div className='row mb-3 justify-content-center fs-5'>
                         <label htmlFor="staticAddress" className="col-3 col-md-2 col-form-label">Adresse</label>
                         <div className="col-9 col-md-6">
                             <input
@@ -157,7 +157,7 @@ const UpdateUsersDetails = () => {
                         </div>
                     </div>
 
-                    <div className='row mb-3 justify-content-center'>
+                    <div className='row mb-3 justify-content-center fs-5'>
                         <label htmlFor="staticPhone" className="col-3 col-md-2 col-form-label">Téléphone</label>
                         <div className="col-9 col-md-6">
                             <input

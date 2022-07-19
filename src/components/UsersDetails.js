@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { baseUrl } from '../utils/fetchApi'
 import './UsersDetails.css'
 
@@ -30,8 +30,8 @@ function UsersDetails() {
 
                 <div className='container'>
 
-                    <div className='row mb-3 justify-content-center'>
-                        <label htmlFor="staticLastname" className="col-3 col-md-2 col-form-label">Nom</label>
+                    <div className='row mb-3 justify-content-center fs-5'>
+                        <label htmlFor="staticLastname" className="col-3 col-md-2 col-form-label ">Nom</label>
                         <div className="col-9 col-md-6">
                             <input
                                 type="text"
@@ -44,7 +44,7 @@ function UsersDetails() {
                         </div>
                     </div>
 
-                    <div className='row mb-3 justify-content-center'>
+                    <div className='row mb-3 justify-content-center fs-5'>
                         <label htmlFor="staticFirstname" className="col-3 col-md-2 col-form-label">Prénom</label>
                         <div className="col-9 col-md-6">
                             <input
@@ -60,7 +60,7 @@ function UsersDetails() {
                     </div>
 
 
-                    <div className='row mb-3 justify-content-center'>
+                    <div className='row mb-3 justify-content-center fs-5'>
                         <label htmlFor="staticEmail" className="col-3 col-md-2 col-form-label">Email</label>
                         <div className="col-9 col-md-6">
                             <input
@@ -75,7 +75,7 @@ function UsersDetails() {
                     </div>
 
 
-                    <div className='row mb-3 justify-content-center'>
+                    <div className='row mb-3 justify-content-center fs-5'>
                         <label htmlFor="staticCompany" className="col-3 col-md-2 col-form-label">Entreprise</label>
                         <div className="col-9 col-md-6">
                             <input
@@ -90,7 +90,7 @@ function UsersDetails() {
                         </div>
                     </div>
 
-                    <div className='row mb-3 justify-content-center'>
+                    <div className='row mb-3 justify-content-center fs-5'>
                         <label htmlFor="staticCompany" className="col-3 col-md-2 col-form-label">Siret</label>
                         <div className="col-9 col-md-6">
                             <input
@@ -105,7 +105,7 @@ function UsersDetails() {
                         </div>
                     </div>
 
-                    <div className='row mb-3 justify-content-center'>
+                    <div className='row mb-3 justify-content-center fs-5'>
                         <label htmlFor="staticAddress" className="col-3 col-md-2 col-form-label">Adresse</label>
                         <div className="col-9 col-md-6">
                             <input
@@ -120,7 +120,7 @@ function UsersDetails() {
                         </div>
                     </div>
 
-                    <div className='row mb-3 justify-content-center'>
+                    <div className='row mb-3 justify-content-center fs-5'>
                         <label htmlFor="staticPhone" className="col-3 col-md-2 col-form-label">Téléphone</label>
                         <div className="col-9 col-md-6">
                             <input
