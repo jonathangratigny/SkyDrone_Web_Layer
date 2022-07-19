@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import '../App.css'
 import './SignUpSection.css'
 import { baseUrl } from "../utils/fetchApi"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { useGlobalState } from '../App'
 
 const SignInSection = () => {
@@ -30,6 +30,7 @@ const SignInSection = () => {
 
             const result = await login.json()
             const hasError = result.status != null && result.status !== 'Connexion réussie'
+
             if (hasError) {
                 localStorage.removeItem('user')
                 dispatch({ auth: false })
@@ -46,19 +47,27 @@ const SignInSection = () => {
                     data: result.message,
                     type: 'success'
                 })
+                navigate('/')
             }
         } catch (error) {
-            console.log(error)
+            console.error(error)
         }
 
     }
+
     
     //message de validation du formulaire
-    // console.log(validForm) //
+    // console.log(validForm)
     // console.log(message)
-    
-
-
+    const messageValidation = () => {
+        if (validForm) {
+            return (
+                <div className='message-validation'>
+                    <p>{message.data}</p>
+                </div>
+            )
+        }
+    }
 
     return (
         <>
@@ -66,6 +75,7 @@ const SignInSection = () => {
                 <div className="test">
                     <h1 className="titleSignUp">S'identifier</h1>
                     <div className="inputLoginTest">
+                        {messageValidation()}
                         <input
                             className="inputBox form-control"
                             name="email"
@@ -75,7 +85,6 @@ const SignInSection = () => {
                             placeholder="EMAIL"
                             required
                         />
-                        
                         <input
                             className="inputBox"
                             name="password"

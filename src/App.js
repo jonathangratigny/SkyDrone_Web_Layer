@@ -21,7 +21,8 @@ import { ModalProvider } from 'styled-react-modal'
 
 const isConnected = () => { // initialise l'état de la connexion
   const auth = localStorage.getItem('user')
-  if (auth && !auth.status === 'Echec') {
+  const authParsed = JSON.parse(auth)
+  if (authParsed && authParsed.token) {
       return true
   } else {
       return false

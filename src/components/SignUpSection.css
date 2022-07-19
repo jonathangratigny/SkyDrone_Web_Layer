@@ -137,6 +137,25 @@
     flex-direction: column;
 }
 
+.message-validation {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 15px;
+    padding: 10px;
+    width: clamp(100px , 200px, 400px);
+    border: 1px solid #e93c3c;
+    border-radius: 25px;
+    color: whitesmoke;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: bold;
+    letter-spacing: 1px;
+    background-color: #e93c3c;
+    cursor: pointer;
+}
+
 @media screen and (max-width: 768px){
     .signup-container > h1{
         font-size: 30px;
