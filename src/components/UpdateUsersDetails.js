@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { baseUrl } from '../utils/fetchApi'
+
 import { Link, useNavigate } from 'react-router-dom'
 import './SignUpSection.css'
 
@@ -36,7 +36,7 @@ const UpdateUsersDetails = () => {
     const handleSubmit = (event) => {
         event.preventDefault()
         const fetchData = async () => {
-            const data = await fetch(`${baseUrl}/users/${authParsed.user._id}`, {
+            const data = await fetch(`${process.env.REACT_APP_BASE_URL}/users/${authParsed.user._id}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',

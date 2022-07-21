@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { baseUrl } from '../utils/fetchApi'
+
 import './UsersDetails.css'
 
 function UsersDetails() {
@@ -10,7 +10,7 @@ function UsersDetails() {
 
     useEffect(() => {
         const fetchData = async () => {
-            const data = await fetch(`${baseUrl}/users/${authParsed.user._id}`, {
+            const data = await fetch(`${process.env.REACT_APP_BASE_URL}/users/${authParsed.user._id}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

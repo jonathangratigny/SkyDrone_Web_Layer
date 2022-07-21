@@ -1,7 +1,7 @@
+
 import React, { useState } from "react"
 import '../App.css'
 import './SignUpSection.css'
-import { baseUrl } from "../utils/fetchApi"
 import { useNavigate } from "react-router-dom"
 import { useGlobalState } from '../App'
 import { notify, ToastRenderer } from '../components/ToastNotification'
@@ -19,16 +19,14 @@ const SignInSection = () => {
 
     const handleLogin = async (e) => {
         e.preventDefault()
-
         try {
-            const login = await fetch(`${baseUrl}/login`, {
+            const login = await fetch(`${process.env.REACT_APP_BASE_URL}/login`, {
                 method: 'post',
                 body: JSON.stringify({ email, password }),
                 headers: {
                     'Content-Type': 'application/json'
                 },
             })
-
             const result = await login.json()
             const hasError = result.status != null && result.status !== 'Connexion réussie'
 

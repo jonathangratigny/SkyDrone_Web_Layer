@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './Cart.css'
 import { CartProvider, useCart } from "react-use-cart"
-import { baseUrl } from "../../utils/fetchApi"
 import { Link } from 'react-router-dom'
 import Modal from 'styled-react-modal'
 import { getDaysBetweenTwoDates } from '../helper.js'
@@ -92,7 +91,7 @@ function Cart() {
                 key_r: JSON.parse(localStorage.getItem('user')).user.key_r,
                 report_o: 'commande initiale'
             }
-            fetch(`${baseUrl}/orders`, {
+            fetch(`${process.env.REACT_APP_BASE_URL}/orders`, {
                 method: 'post',
                 body: JSON.stringify(order),
                 headers: {

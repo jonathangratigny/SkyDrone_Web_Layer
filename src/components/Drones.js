@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import DroneCard from './DroneCard'
 import { Link } from 'react-router-dom'
-import { baseUrl } from '../utils/fetchApi'
+
 import { useParallax } from 'react-scroll-parallax'
 import ContentLoader from 'react-content-loader'
 
@@ -10,11 +10,11 @@ const Drones = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const data = await fetch(`${baseUrl}/drones`)
+            const data = await fetch(`${process.env.REACT_APP_BASE_URL}/drones`)
             const json = await data.json()
 
             const populate = json.map(async (drone) => {
-                const data2 = await fetch(`${baseUrl}/categories/${drone.category_id}`)
+                const data2 = await fetch(`${process.env.REACT_APP_BASE_URL}/categories/${drone.category_id}`)
                 const json2 = await data2.json()
                 drone.category_info = json2
                 drone.id = drone._id

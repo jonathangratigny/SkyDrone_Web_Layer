@@ -1,15 +1,13 @@
 import React, {useState, useEffect} from 'react'
 import '../App.css'
 import './HeroSection.css'
-import { baseUrl } from '../utils/fetchApi'
-import Footer from './Footer'
 
 const ErrorSection = () => {
     const [error, setError] = useState([])
 
     useEffect(() => {
         const fetchData = async () => {
-            const data = await fetch(`${baseUrl}/`);
+            const data = await fetch(`${process.env.REACT_APP_BASE_URL}/`);
             const json = await data.json()
             setError(json)
         }

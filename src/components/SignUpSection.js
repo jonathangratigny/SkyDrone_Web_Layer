@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import '../App.css'
 import './SignUpSection.css'
-import { baseUrl } from "../utils/fetchApi"
+
 import { useNavigate } from "react-router-dom"
 import PasswordChecklist from "react-password-checklist"
 
@@ -21,7 +21,7 @@ const SignUpSection = () => {
     const navigate = useNavigate()
 
     const collectData = async () => {
-        let result = await fetch(`${baseUrl}/signup`, {
+        let result = await fetch(`${process.env.REACT_APP_BASE_URL}/signup`, {
             method: 'post',
             body: JSON.stringify(
                 {

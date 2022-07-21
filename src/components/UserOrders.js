@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { baseUrl } from '../utils/fetchApi'
 import './UsersDetails.css'
 import { formatDate, getDays, removeDay } from './helper'
 
@@ -13,7 +12,7 @@ function UserOrders() {
 
     useEffect(() => {
         const fetchData = async () => {
-            const data = await fetch(`${baseUrl}/orders/user/${authParsed.user._id}`, {
+            const data = await fetch(`${process.env.REACT_APP_BASE_URL}/orders/user/${authParsed.user._id}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -37,25 +36,25 @@ function UserOrders() {
                     <h1 className='titleDrone'>Réservation en cours</h1>
                 </div>
                 {orders.length > 0 ?
-                    <div className="container">
-                        <ul className='d-flex flex-column mt-5 list-group'>
+                    <div className="container mt-3">
+                        <ul className='d-flex flex-column'>
                             {
                                 orders.map(order => (
                                     order.state_o === 'En attente de validation' ?
-                                        <li className='d-flex flex-column list-group-item' key={order._id}>
-                                            <div className='d-flex flex-row'>
-                                                <div className='d-flex flex-column'>
-                                                    <h2 className='text-uppercase'>{order.drone_id.name_d}</h2>
-                                                    <div className="item_image">
+                                        <li className='d-flex flex-column card' key={order._id}>
+                                            <div className='flex-row'>
+                                                <div className='flex-column'>
+                                                    <h2 className='text-uppercase text-center'>{order.drone_id.name_d}</h2>
+                                                    <div className="item_image_history">
                                                         <img src={`./images/${order.drone_id._id}.png`} alt={order.drone_id.name_d} className='cart_item__img ' />
                                                     </div>
-                                                    <div>
+                                                    <div className='fs-5'>
                                                         <p> État : <span className='text-warning' > {order.state_o}</span></p>
                                                         <p>Votre demande est à l'étude. Nous vous informerons de son status très prochainement.
                                                             (Dernière mise à jour il y a {getDays(order.createdAt, Date.now())} jour{getDays(order.createdAt, Date.now()) > 1 ? 's' : ''}).</p>
+                                                        <p>Date de la commande : {formatDate(order.createdAt)}.</p>
+                                                        <p>Réservation du {formatDate(order.startAt_o)} au {formatDate(order.endAt_o)}.</p>
                                                     </div>
-                                                    <p>Date de la commande : {formatDate(order.createdAt)}.</p>
-                                                    <p>Réservation du {formatDate(order.startAt_o)} au {formatDate(order.endAt_o)}.</p>
                                                 </div>
                                             </div>
                                         </li>

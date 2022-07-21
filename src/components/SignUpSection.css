@@ -1,7 +1,7 @@
 .signup-container{
     background: url('../../public/images/img-sign3.jpg') center center/cover no-repeat;
     width: 100%;
-    height: 80vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
