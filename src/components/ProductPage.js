@@ -158,6 +158,8 @@ const ProductPage = ({ drone }) => {
 					mouseTracking
 					autoPlay
 					infinite
+					disableDotsControls
+					disableButtonsControls
 					autoPlayInterval={2000}
 					animationDuration={1000}
 					responsive={{

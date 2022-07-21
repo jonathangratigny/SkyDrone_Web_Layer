@@ -24,8 +24,6 @@ const Navbar = () => {
     }
   }
 
-console.log(state.auth)
-
   window.addEventListener('resize', showButton)
   const logOut = () => {
     localStorage.clear()

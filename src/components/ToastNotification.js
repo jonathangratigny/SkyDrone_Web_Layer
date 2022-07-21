@@ -2,36 +2,52 @@ import React from 'react'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
-export const notify = () => {
+export const notify = (text, color) => {
+    switch (color) {
+        case 'success':
+            toast.success(text, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            })
+            break
 
-    toast('Undefined Notification');
-    
-    toast.success("Success Notification !", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-    })
+        case 'error':
+            toast.error(text, {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            })
+            break
 
-    toast.error("Error Notification !", {
-        position: toast.POSITION.TOP_LEFT
-    })
+        case 'warning':
+            toast.warn(text, {
+                position: toast.POSITION.BOTTOM_LEFT
+            })
+            break
 
-    toast.warn("Warning Notification !", {
-        position: toast.POSITION.BOTTOM_LEFT
-    })
+        case 'info':
+            toast.info(text, {
+                position: toast.POSITION.BOTTOM_CENTER
+            })
+            break
 
-    toast.info("Info Notification !", {
-        position: toast.POSITION.BOTTOM_CENTER
-    })
+        default:
+            toast(text)
+            break
+    }
 }
 
-
-// Merci pour le moment c'est good je retate le terrain mais je crois que je vois
-// Ce sera a toi de me dire si ça cfonctionne
-//ok
-// j'y retourne ->ok
-// https://fkhadra.github.io/react-toastify/introduction/
+export const ToastRenderer = () => {
+    return (
+        <ToastContainer />
+    )
+}

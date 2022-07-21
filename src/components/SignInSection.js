@@ -2,10 +2,9 @@ import React, { useState } from "react"
 import '../App.css'
 import './SignUpSection.css'
 import { baseUrl } from "../utils/fetchApi"
-import { useNavigate, useParams } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { useGlobalState } from '../App'
-import { ToastContainer, toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import { notify, ToastRenderer } from '../components/ToastNotification'
 
 const SignInSection = () => {
     const [email, setEmail] = useState('')
@@ -14,13 +13,13 @@ const SignInSection = () => {
     const [state, dispatch] = useGlobalState()
     const [message, setMessage] = useState({
         data: 'Email ou mot de passe incorrect',
-        type: 'warning'
+        type: 'error'
     })
-    const [validForm, setValidForm] = useState(false)
+    const [validForm, setValidForm] = useState(true)
 
     const handleLogin = async (e) => {
         e.preventDefault()
-        console.warn(email, password)
+
         try {
             const login = await fetch(`${baseUrl}/login`, {
                 method: 'post',
@@ -39,8 +38,9 @@ const SignInSection = () => {
                 setValidForm(true)
                 setMessage({
                     data: 'Email ou mot de passe incorrect',
-                    type: 'warning'
+                    type: 'error'
                 })
+                toastCall(message.type)
             }
             else {
                 localStorage.setItem('user', JSON.stringify(result))
@@ -49,35 +49,31 @@ const SignInSection = () => {
                     data: result.message,
                     type: 'success'
                 })
+                toastCall(message.type)
                 navigate('/')
             }
         } catch (error) {
             console.error(error)
         }
-
     }
 
-    
-    //message de validation du formulaire
-    // console.log(validForm)
-    // console.log(message)
-    const messageValidation = () => {
-        if (validForm) {
-            return (
-                <div className='message-validation'>
-                    <p>{message.data}</p>
-                </div>
-            )
-        }
+
+
+    /**
+     * Genere un toast selon l'etat du formulaire
+     */
+    const toastCall = (messageData, messageType) => {
+        messageData = message.data
+        messageType = message.type
+        notify(messageData, messageType)
     }
 
     return (
         <>
-            <div className="signup-container">
+            <div className="signin-container">
                 <div className="test">
                     <h1 className="titleSignUp">S'identifier</h1>
                     <div className="inputLoginTest">
-                        {messageValidation()}
                         <input
                             className="inputBox form-control"
                             name="email"
@@ -106,8 +102,8 @@ const SignInSection = () => {
                         </button>
                     </div>
                 </div>
+                <ToastRenderer />
             </div>
-            <ToastContainer />
         </>
     )
 }

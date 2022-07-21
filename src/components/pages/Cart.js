@@ -36,9 +36,9 @@ function Cart() {
     } = useCart()
 
     const [totalDays, setTotalDays] = useState(0)
-    
+
     const [isOpen, setIsOpen] = useState(false)
-    
+
     const isConnected = () => {
         const auth = localStorage.getItem('user')
         return auth ? true : false
@@ -65,15 +65,15 @@ function Cart() {
     const totalPrice = () => {
         let total = 0
         let totalDays = 0
-        if(items.length > 0) {
-        totalDays = getDaysBetweenTwoDates(items[0].startDate, items[0].endDate)
-        if (totalDays <= 0) {
-            totalDays = 1
-        }
-        for (let key in items) {
-            total += items[key].price
-        }
-        return total * totalDays
+        if (items.length > 0) {
+            totalDays = getDaysBetweenTwoDates(items[0].startDate, items[0].endDate)
+            if (totalDays <= 0) {
+                totalDays = 1
+            }
+            for (let key in items) {
+                total += items[key].price
+            }
+            return total * totalDays
         } else {
             return 0
         }
@@ -124,7 +124,7 @@ function Cart() {
             toggleModal()
         }
     }
-    
+
     useEffect(() => {
         let totalDays = 0
         items.forEach(item => {
@@ -165,16 +165,16 @@ function Cart() {
 
                                             <li key={item.id} className="list-group-item d-flex p-3 flex-wrap ">
                                                 <picture className='item_image '>
-                                                <Link to={"/products/" + item.id}>
-                                                    <img src={`./images/${item.id}.png`} alt='drone' className='w-100'></img>
-                                                </Link>
+                                                    <Link to={"/products/" + item.id}>
+                                                        <img src={`./images/${item.id}.png`} alt='drone' className='w-100'></img>
+                                                    </Link>
                                                 </picture>
                                                 <div className="item_details flex-grow-1 d-flex flex-column">
                                                     <div className="item_desc d-flex mb-2 ">
                                                         <div className="item_title text-uppercase fs-4 fw-bolder">{item.name_d}</div>
                                                     </div>
                                                     <div className="item_desc d-flex mb-2 ">
-                                                        <div>Du {displayDateStart(key)} au {displayDateEnd(key)} inclus soit un total de <span className='text-decoration-underline'>{getDaysBetweenTwoDates(item.startDate, item.endDate)} jours.</span></div>
+                                                        <div>Du {displayDateStart(key)} au {displayDateEnd(key)} inclus soit <span className='text-decoration-underline'>{getDaysBetweenTwoDates(item.startDate, item.endDate)} jours de location.</span></div>
                                                     </div>
                                                     <div className="item_desc d-flex mb-2 ">
                                                         <div className="item_price">{item.price}€/jours</div>
@@ -195,17 +195,18 @@ function Cart() {
                                         ))}
                                     </ul>
                                 </div>
-                                <div className="cart_recap p-3">
-                                    <h4 className="cart_title fs-3">Récapitulatif</h4>
-                                    <hr></hr>
-
-                                    <p className="cart_total">Transport et préparation (forfait): {totalTransport ? totalTransport : null} €</p>
-                                    <p className="cart_total">Nombre de jours: {totalDays ? totalDays : null}</p>
-                                    <p className="cart_total">Location: {totalPrice() ? totalPrice() : null} €</p>
-                                    <p className="cart_total">Montant Total: {totalAmount ? totalAmount : null} €</p>
+                                <div className="cart_recap p-3 ">
+                                    <div className='cart_title'>
+                                        <h4 className=" ">Récapitulatif</h4>
+                                        <hr></hr>
+                                    </div>
+                                    <p className="cart_text">Transport et préparation (forfait): {totalTransport ? totalTransport : null} €</p>
+                                    <p className="cart_text">Nombre de jours: {totalDays ? totalDays : null}</p>
+                                    <p className="cart_text">Location: {totalPrice() ? totalPrice() : null} €</p>
+                                    <p className="cart_text">Montant Total: {totalAmount ? totalAmount : null} €</p>
                                     {totalAmount ?
                                         <div className="cart_total">
-                                            <button className="btn btn-dark w-100" onClick={checkout}>Commander</button>
+                                            <button className="btn btn-dark w-100 fs-4" onClick={checkout}>Commander</button>
                                         </div>
                                         :
                                         null
@@ -219,8 +220,8 @@ function Cart() {
                 onBackgroundClick={toggleModal}
                 onEscapeKeydown={toggleModal}>
                 <div className='logo text-center'>Vous devez être identifié :</div>
-                <Link className='hiddenbtn' to='/sign-in'><button className='myBtn'>CONNEXION</button></Link>
-                <Link className='hiddenbtn' to='/sign-up'><button className='btnSignUp'>INSCRIPTION</button></Link>
+                <Link to='/sign-in'><button className='myBtn'>CONNEXION</button></Link>
+                <Link to='/sign-up'><button className='btnSignUp'>INSCRIPTION</button></Link>
             </StyledModal>
         </>
     )

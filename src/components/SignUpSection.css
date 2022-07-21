@@ -10,6 +10,18 @@
     object-fit: contain;
     /* background-color: whitesmoke; */
 }
+.signin-container{
+    background: url('../../public/images/img-sign3.jpg') center center/cover no-repeat;
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: inset 0 0 0 1000px rgb(0,0,0,0.2);
+    object-fit: contain;
+    /* background-color: whitesmoke; */
+}
 
 .titleSignUp{
     letter-spacing: 2px;
@@ -137,24 +149,6 @@
     flex-direction: column;
 }
 
-.message-validation {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 15px;
-    padding: 10px;
-    width: clamp(100px , 200px, 400px);
-    border: 1px solid #e93c3c;
-    border-radius: 25px;
-    color: whitesmoke;
-    text-transform: uppercase;
-    text-align: center;
-    font-weight: bold;
-    letter-spacing: 1px;
-    background-color: #e93c3c;
-    cursor: pointer;
-}
 
 @media screen and (max-width: 768px){
     .signup-container > h1{
@@ -169,15 +163,20 @@
         border-radius: 25px;
     }
     .signup-container{
-        background: url('../../public/images/img-sign3.jpg') center center/cover no-repeat;
-        width: 100%;
-        height: 125vh;
+        height: 130vh;
         display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
         box-shadow: inset 0 0 0 1000px rgb(0,0,0,0.2);
         object-fit: contain;
         /* background-color: whitesmoke; */
+    }
+    .signin-container{
+        height: 80vh;
+        display: flex;
+        box-shadow: inset 0 0 0 1000px rgb(0,0,0,0.2);
+        object-fit: contain;
+        /* background-color: whitesmoke; */
+    }
+    .linkBtn {
+        display: flex;
     }
 }
