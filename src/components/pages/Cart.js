@@ -220,7 +220,7 @@ function Cart() {
                 onEscapeKeydown={toggleModal}>
                 <div className='logo text-center'>Vous devez être identifié :</div>
                 <Link to='/sign-in'><button className='myBtn'>CONNEXION</button></Link>
-                <Link to='/sign-up'><button className='btnSignUp'>INSCRIPTION</button></Link>
+                <Link to='/sign-up'><button className='btnRegister'>INSCRIPTION</button></Link>
             </StyledModal>
         </>
     )

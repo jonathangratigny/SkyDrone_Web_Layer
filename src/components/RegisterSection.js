@@ -1,12 +1,12 @@
 import React, { useState } from "react"
 import '../App.css'
-import './SignUpSection.css'
+import './RegisterSection.css'
 
 import { useNavigate } from "react-router-dom"
 import PasswordChecklist from "react-password-checklist"
 
 
-const SignUpSection = () => {
+const RegisterSection = () => {
     // const regexMail = /^[a-z0-9.-]+[@]{1}[a-z0-9.-]+[.]{1}[a-z]{2,4}$/
     const [lastName_u, setLastName] = useState('')
     const [firstName_u, setFirstName] = useState('')
@@ -57,7 +57,7 @@ const SignUpSection = () => {
     return (
         <>
             <div className="signup-container ">
-                <h1 className="titleSignUp">N'y allons pas par 4 chemins</h1>
+                <h1 className="titleRegister">N'y allons pas par 4 chemins</h1>
                 <div className="background d-flex justify-content-center">
                     <div className="inputLogin">
                         <input
@@ -137,6 +137,10 @@ const SignUpSection = () => {
                             className="inputBox"
                             placeholder="Confirmation mot de passe"
                         />
+                        <input
+                            type="hidden"
+                            onChange={e => setKey_r(e.target.value)}
+                        />
 
                     </div>
                 </div>
@@ -167,4 +171,4 @@ const SignUpSection = () => {
     )
 }
 
-export default SignUpSection
+export default RegisterSection

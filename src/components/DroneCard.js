@@ -19,7 +19,7 @@ const DroneCard = ({ drone }) => {
 						<span className={drone.state === 'En Stock' ? "cards__item__dispo" : "cards__item__indispo"}>{drone.state === 'En Stock' ? drone.state : "Disponible sous 7 jours"}</span>
 					</footer>
 				</div>
-					<button className="btnSignUp" >{drone.state === 'En Stock' ? 'Réserver' : 'Consulter les disponibilités'}</button>
+					<button className="btnRegister" >{drone.state === 'En Stock' ? 'Réserver' : 'Consulter les disponibilités'}</button>
 			</div>
      
  	);

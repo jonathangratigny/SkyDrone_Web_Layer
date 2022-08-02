@@ -15,7 +15,6 @@ function AboutSection() {
 						</p>
 						<p className="textAbout">Vous souhaitez louer un drone? Il vous suffit de sélectionner le produit qui vous intéresse et nous indiquer la durée de votre location. Notre magasin est capable de vous livrer le drone. Notre équipe répond à tous vos besoins en matière de photographie aérienne, de la simple photo vue du ciel au projet vidéo complet.</p>
 						<p className='textAbout'>Sky'Drone s'efforce de vous répondre le plus rapidement possible en mettant en oeuvre toutes les compétences de ses équipes.</p>
-						<p className='textAbout'>TEST COMMIT THEO</p>
 					</div>
 				</div>
 			</div>

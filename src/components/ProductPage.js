@@ -186,7 +186,7 @@ const ProductPage = ({ drone }) => {
 							<p><span className='fw-bold'>Prix Total :</span> {drone.pricePerDay_d * totalDay} €</p>
 						</div>
 					}
-					<button className="btnSignUp  mt-3" disabled={!state.change} onClick={() => isValidDate()}>Réserver</button>
+					<button className="btnRegister  mt-3" disabled={!state.change} onClick={() => isValidDate()}>Réserver</button>
 					<StyledModal
 						isOpen={isOpen}
 						onBackgroundClick={toggleModal}

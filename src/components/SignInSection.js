@@ -1,7 +1,7 @@
 
 import React, { useState } from "react"
 import '../App.css'
-import './SignUpSection.css'
+import './RegisterSection.css'
 import { useNavigate } from "react-router-dom"
 import { useGlobalState } from '../App'
 import { notify, ToastRenderer } from '../components/ToastNotification'
@@ -70,7 +70,7 @@ const SignInSection = () => {
         <>
             <div className="signin-container">
                 <div className="test">
-                    <h1 className="titleSignUp">S'identifier</h1>
+                    <h1 className="titleRegister">S'identifier</h1>
                     <div className="inputLoginTest">
                         <input
                             className="inputBox form-control"

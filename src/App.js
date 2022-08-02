@@ -6,7 +6,7 @@ import './App.css';
 import Home from './components/pages/Home';
 import DronesPage from './components/pages/Drones';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import SignUp from './components/pages/SignUp';
+import Register from './components/pages/Register';
 import SignIn from './components/pages/SignIn';
 import UserDashboard from './components/UserDashboard';
 import Cart from './components/pages/Cart';
@@ -68,7 +68,7 @@ const App = () => {
             <Routes>
               <Route path='/' exact element={<Home />}></Route>
               <Route path='/products/*' exact element={<DronesPage />}></Route>
-              <Route path='/sign-up' exact element={<SignUp />}></Route>
+              <Route path='/sign-up' exact element={<Register />}></Route>
               <Route path='/sign-in' exact element={<SignIn />}></Route>
               <Route path='/dashboard' exact element={<UserDashboard />}></Route>
               <Route path='/cart' exact element={<Cart />}></Route>

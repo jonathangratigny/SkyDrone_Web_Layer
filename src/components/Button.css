@@ -6,7 +6,7 @@
     margin: 2%;
 }
 
-.btnSignUp{
+.btnRegister{
     padding: 5px 15px;
     border-radius: 25px;
     outline: none;
@@ -20,7 +20,7 @@
     /* letter-spacing: 2px; */
     font-size: 1rem;
 }
-.btnSignUpDisabled{
+.btnRegisterDisabled{
     padding: 5px 15px;
     border-radius: 25px;
     outline: none;
@@ -64,7 +64,7 @@
     text-decoration: none;
 }
 
-.btnSignUp:hover{
+.btnRegister:hover{
     background: gray;
     border-color: gray;
     color: #fff;

@@ -23,7 +23,13 @@
     /* background-color: whitesmoke; */
 }
 
-.titleSignUp{
+.test{
+    background-color: rgb(245, 245, 245, 0.2);
+    padding: 2%;
+    border-radius: 25px;
+}
+
+.titleRegister{
     letter-spacing: 2px;
     font-size: 2rem;
     color: whitesmoke;
