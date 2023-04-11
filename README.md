@@ -1,4 +1,4 @@
-# SkyDrone Commandes
+# SkyDrone Web Layer
 
 Bienvenue sur l'application Web SkyDrone! Cette Single Page App a été créée pour permettre aux clients de SkyDrone de passer facilement des commandes pour leurs drones.
 
