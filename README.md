@@ -9,11 +9,13 @@ Pour utiliser cette application, vous devez avoir Node.js et NPM installés sur 
 ## Installation
 
 1. Clonez ce référentiel sur votre ordinateur en utilisant la commande suivante:
-`git clone [https://github.com/jonathangratigny/SkyDrone-Commandes.git](https://github.com/jonathangratigny/SkyDrone_Web_Layer.git)`
-2. Ouvrez une invite de commande dans le dossier racine du projet.
-3. Exécutez la commande suivante pour installer les dépendances:
+`git clone https://github.com/jonathangratigny/SkyDrone_Web_Layer.git`
+2. Créez un fichier .env à la racine du projet avec les variables d'environnement suivantes:
+`REACT_APP_BASE_URL` : l'adresse de votre API crée depuis ce projet [https://github.com/votre-compte/SkyDrone-API.git](https://github.com/votre-compte/SkyDrone-API.git) 
+3. Ouvrez une invite de commande dans le dossier racine du projet.
+4. Exécutez la commande suivante pour installer les dépendances:
 `npm install`
-4. Exécutez la commande suivante pour lancer l'application:
+5. Exécutez la commande suivante pour lancer l'application:
 `npm start`
 
 ## Utilisation
